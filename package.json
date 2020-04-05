@@ -4,9 +4,7 @@
   "description": "My Portfolio Website",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "build": "webpack -d ",
-    "build:prod": "webpack -p && cp src/index.html dist/index.html"
+    "start": "node app.js"
   },
   "author": "Mitchell Wills",
   "license": "MIT",
