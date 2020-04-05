@@ -1,0 +1,57 @@
+.navBar {
+	height: calc(50px + 0.5vh);
+	width: calc(100vw);
+	background-color: var(--menu);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.5);
+}
+
+.navBar-Objects-Wrapper {
+	position: absolute;
+	white-space: nowrap;
+	right: 60vw;
+	top: 0;
+	transition: top 0.5s;
+}
+
+.navBar-Object-Wrapper {
+	display: inline-block;
+}
+
+.navBar-Input {
+	display: none;
+}
+
+.navBar-Object {
+	font-size: 1.5em;
+	line-height: calc(50px + 0.5vh);
+	padding-left: 20px;
+	padding-right: 20px;
+	cursor: pointer;
+	transition: color 0.2s;
+	user-select: none;
+}
+
+.navBar-Object:hover {
+	color: var(--highlight);
+}
+
+.active {
+	color: var(--highlight) !important;
+}
+
+@media only screen and (max-width: 1520px) {
+	.navBar-Objects-Wrapper {
+		left: 0 !important;
+		right: none;
+	}
+}
+
+@media only screen and (max-width: 620px) {
+	.navBar-Objects-Wrapper {
+		top: calc(-50px + -10vh);
+	}
+}

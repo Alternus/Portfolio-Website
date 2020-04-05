@@ -1,0 +1,26 @@
+{
+  "name": "Portfolio-Website",
+  "version": "0.0.0",
+  "description": "My Portfolio Website",
+  "main": "index.js",
+  "scripts": {
+    "start": ""
+  },
+  "author": "Mitchell Wills",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "connect": "^3.7.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-tilt": "^0.1.4",
+    "serve-static": "^1.14.1"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-2": "^6.11.0",
+    "webpack": "^1.13.1"
+  }
+}

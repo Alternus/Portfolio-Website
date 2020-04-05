@@ -1,0 +1,56 @@
+.project-pageWrapper {
+	width: calc(98vw - 40px );
+	min-height: calc(91.5vh - 100px);
+	margin-left: calc(1vw);
+	padding-top: calc(50px + 8vh);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.project-Card {
+	position: relative;
+	margin-right: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+.project-Click-Wrapper {
+	position: absolute;
+	width: 350px;
+	height: 197px;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.project-Banner {
+	width: 350px;
+	height: 197px;
+	transition: filter 0.5s;
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+}
+
+.project-Name {
+	font-family: FiraSans-Regular;
+	display: block;
+	transition: 0.2s;
+	margin-top: 8px;
+	font-size: 24px;
+}
+
+
+.project-Forked-Tag {
+	background-color: var(--highlight);
+	text-align: right;
+	padding-right: 10px;
+	height: 25px;
+	width: 90px;
+	position: absolute;
+	font-size: 1.2em;
+	top: 10px;
+	left: 290px;
+	z-index: 1;
+	user-select: none;
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+}

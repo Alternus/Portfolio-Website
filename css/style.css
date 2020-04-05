@@ -1,0 +1,50 @@
+:root {
+	--background: #1e2736;
+	--menu: #272f3d;
+	--menu-sub: #151a23;
+	--border: #262930;
+	--font: #fff;
+	--font-sub:#aaa;
+	--highlight:#00e676;
+	--highlight-background: #1d2024;
+}
+
+@font-face {
+	font-family: FiraSans-Light;
+	src: url("../assets/fonts/FiraSans-Light.ttf");
+}
+@font-face {
+	font-family: FiraSans-Regular;
+	src: url("../assets/fonts/FiraSans-Regular.ttf");
+}
+
+body{
+	background-color: var(--background);
+	font-family: FiraSans-Regular;
+	color: var(--font);
+	margin: 0px;
+	padding: 0px;
+}
+
+:root{
+  scrollbar-color: var(--highlight) var(--menu) !important;
+  scrollbar-width: thin !important;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--highlight);
+}
+
+.page-Wrapper {
+	height: calc(99.5vh - 50px);
+	width: 100vw;
+	position: absolute;
+	top: calc(50px + 0.5vh);
+	left: 0;
+	overflow: scroll;
+	overflow-x: hidden;
+}

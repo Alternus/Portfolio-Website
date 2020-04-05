@@ -1,0 +1,61 @@
+.contactCard {
+	width: 100vw;
+	height: calc( 600px + 4vh);
+	background-color: var(--menu-sub);
+	padding-top: 50px;
+	margin-top: 700px;
+}
+
+.contact-Header {
+	text-align: center;
+}
+
+.contact-Text {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-size: 1.2em;
+	color: var(--highlight);
+}
+
+.contact-Input-Field {
+	border: none;
+	background-color: var(--menu-sub);
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+	width: 500px;
+	color: var(--font);
+	font-size: 1.2em;
+	border-bottom: 5px solid var(--font);
+}
+
+.contact-Input-Field:focus {
+	border-bottom: 5px solid var(--highlight);
+}
+
+.contact-Message-Input-Field {
+	border: none;
+	color: var(--font);
+	font-size: 1.5em;
+	background-color: var(--menu);
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 200px;
+	min-width: 500px;
+	max-height: 250px;
+	max-width: 1000px;
+	border-bottom: 5px solid var(--font);
+}
+
+.contact-Message-Input-Field:focus {
+	border-bottom: 5px solid var(--highlight);
+}
+
+@media only screen and (max-width: 1000px) {
+	.contactCard {
+		margin-top: 250px;
+	}
+}
