@@ -54,3 +54,10 @@
 	user-select: none;
 	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
 }
+
+@media only screen and (max-width: 620px) {
+	.project-Card {
+		margin-right: auto;
+		margin-left: auto;
+	}
+}

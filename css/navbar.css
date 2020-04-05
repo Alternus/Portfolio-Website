@@ -53,5 +53,6 @@
 @media only screen and (max-width: 620px) {
 	.navBar-Objects-Wrapper {
 		top: calc(-50px + -10vh);
+		height: calc(50px + 1vh);
 	}
 }
