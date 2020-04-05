@@ -58,4 +58,12 @@
 	.contactCard {
 		margin-top: 250px;
 	}
+	.contact-Message-Input-Field {
+		min-width: 75vw;
+		max-width: 75vw;
+	}
+	.contact-Input-Field {
+		min-width: 75vw;
+		max-width: 75vw;
+	}
 }
