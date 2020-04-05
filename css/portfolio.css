@@ -7,6 +7,7 @@
 	flex-wrap: wrap;
 	justify-content: space-around;
 }
+
 .project-Card {
 	position: relative;
 	margin-right: 20px;
@@ -56,8 +57,13 @@
 }
 
 @media only screen and (max-width: 620px) {
+	.project-pageWrapper {
+		justify-content: center;
+	}
 	.project-Card {
-		margin-right: auto;
-		margin-left: auto;
+		position: relative;
+		margin-right: 0px;
+		margin-left: 0px;
+		margin-bottom: 20px;
 	}
 }
