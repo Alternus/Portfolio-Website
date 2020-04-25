@@ -69,7 +69,11 @@
 	}
 }
 
+
+/* -------------------- */
 /* Project Details Card */
+/* -------------------- */
+
 
 .project-DetailsCard {
 	width: calc(98vw - 40px );
@@ -81,7 +85,10 @@
 	padding-top: 1px;
 	top: calc(50px + 0.5vh);
 	padding-bottom: 20px;
+	z-index: 1;
 	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+	transition: transform 0.5s;
+	transform: translateY(-100vh);
 }
 
 .project-Details-Banner {
@@ -220,6 +227,10 @@
 	cursor: pointer;
 	right: 20px;
 	top: 20px;
+}
+
+.project-Return:hover {
+	filter: brightness(0) saturate(100%) invert(59%) sepia(52%) saturate(901%) hue-rotate(102deg) brightness(101%) contrast(102%);
 }
 
 .project-ReturnText {

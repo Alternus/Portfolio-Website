@@ -9,11 +9,11 @@ class WebPage extends React.Component {
 		return (
 			<div>
 				<Navbar />
-				<div className="page-Wrapper">
-					<Projects />
-					<SkillsCard />
-					<EducationAwardsCard />
-					<ContactCard />
+				<div className="page-Wrapper" id="page-Wrapper" >
+					<Projects id="projects" />
+					<SkillsCard id="skills" />
+					<EducationAwardsCard id="education-awards" />
+					<ContactCard id="contact" />
 				</div>
 			</div>
 		);

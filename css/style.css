@@ -18,6 +18,10 @@
 	src: url("../assets/fonts/FiraSans-Regular.ttf");
 }
 
+html {
+	scroll-behavior: smooth !important;
+}
+
 body{
 	background-color: var(--background);
 	font-family: FiraSans-Regular;

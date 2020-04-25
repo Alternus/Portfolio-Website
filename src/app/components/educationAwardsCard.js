@@ -1,7 +1,7 @@
 export class EducationAwardsCard extends React.Component {
 	render() {
 		return(
-			<div className="educationAwards-Card">
+			<div className="educationAwards-Card" id={this.props.id}>
 				<h1 className="skills-List-Header" >Current College Courses</h1>
 				<a className="skills-List-Item" >&gt; Specialist Mathematics - Major</a>
 				<a className="skills-List-Item" >&gt; Specialist Methods - Major</a>

@@ -1,8 +1,9 @@
 .contactCard {
-	width: 100vw;
-	height: calc( 600px + 4vh);
+	width: calc(100vw - 8px);
+	height: calc(500px + 4vh);
 	background-color: var(--menu-sub);
 	padding-top: 50px;
+	padding-bottom: 50px;
 	margin-top: 700px;
 }
 

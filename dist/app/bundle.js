@@ -85,11 +85,11 @@
 					React.createElement(_navbar.Navbar, null),
 					React.createElement(
 						'div',
-						{ className: 'page-Wrapper' },
-						React.createElement(_projects.Projects, null),
-						React.createElement(_skillsCard.SkillsCard, null),
-						React.createElement(_educationAwardsCard.EducationAwardsCard, null),
-						React.createElement(_contact.ContactCard, null)
+						{ className: 'page-Wrapper', id: 'page-Wrapper' },
+						React.createElement(_projects.Projects, { id: 'projects' }),
+						React.createElement(_skillsCard.SkillsCard, { id: 'skills' }),
+						React.createElement(_educationAwardsCard.EducationAwardsCard, { id: 'education-awards' }),
+						React.createElement(_contact.ContactCard, { id: 'contact' })
 					)
 				);
 			}
@@ -124,13 +124,32 @@
 	var Navbar = exports.Navbar = function (_React$Component) {
 		_inherits(Navbar, _React$Component);
 	
-		function Navbar() {
+		function Navbar(props) {
 			_classCallCheck(this, Navbar);
 	
-			return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));
+	
+			_this.state = { selectedElement: "projects" };
+			_this.scrollTo = _this.scrollTo.bind(_this);
+			return _this;
 		}
 	
 		_createClass(Navbar, [{
+			key: "scrollTo",
+			value: function scrollTo(element) {
+				if (element == "Education & Awards") {
+					element = "education-awards";
+				}
+				element = element.toLowerCase();
+				this.setState({ selectedElement: element });
+				var pagePart = document.getElementById(element);
+				pagePart.scrollIntoView({
+					behavior: "smooth",
+					block: "center",
+					inline: "nearest"
+				});
+			}
+		}, {
 			key: "render",
 			value: function render() {
 				return React.createElement(
@@ -139,12 +158,41 @@
 					React.createElement(
 						"div",
 						{ className: "navBar-Objects-Wrapper" },
-						React.createElement(NavbarObject, { name: "Projects", active: "active" }),
-						React.createElement(NavbarObject, { name: "Skills", active: "" }),
-						React.createElement(NavbarObject, { name: "Education & Awards", active: "" }),
-						React.createElement(NavbarObject, { name: "Contact", active: "" })
+						React.createElement(NavbarObject, { name: "Projects", scrollTo: this.scrollTo, selectedElement: this.state.selectedElement }),
+						React.createElement(NavbarObject, { name: "Skills", scrollTo: this.scrollTo, selectedElement: this.state.selectedElement }),
+						React.createElement(NavbarObject, { name: "Education & Awards", scrollTo: this.scrollTo, selectedElement: this.state.selectedElement }),
+						React.createElement(NavbarObject, { name: "Contact", scrollTo: this.scrollTo, selectedElement: this.state.selectedElement })
 					)
 				);
+			}
+		}, {
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				var _this2 = this;
+	
+				var options = {
+					root: document.querySelector('#page-Wrapper'),
+					rootMargin: '0px',
+					threshold: 0.99
+				};
+				var skillsCallback = function skillsCallback(entries, o) {
+					entries.forEach(function (entry) {
+						console.log(entry.target.id + "" + entry.intersectionRatio);
+						if (entry.isIntersecting) {
+							_this2.setState({ selectedElement: entry.target.id });
+						}
+					});
+				};
+				var observer = new IntersectionObserver(skillsCallback, options);
+				function observe() {
+					observer.observe(document.querySelector('#projects'));
+					observer.observe(document.querySelector('#skills'));
+					observer.observe(document.querySelector('#education-awards'));
+					observer.observe(document.querySelector('#contact'));
+				}
+				window.addEventListener("load", function (event) {
+					observe();
+				}, false);
 			}
 		}]);
 	
@@ -163,13 +211,25 @@
 		_createClass(NavbarObject, [{
 			key: "render",
 			value: function render() {
+				var _this4 = this;
+	
+				var isActive = "";
+				var nameForSelection = this.props.name.toLowerCase();
+				if (this.props.name == "Education & Awards") {
+					nameForSelection = "education-awards";
+				}
+				if (this.props.selectedElement == nameForSelection) {
+					isActive = "active";
+				}
 				return React.createElement(
 					"div",
 					{ className: "navBar-Object-Wrapper" },
-					React.createElement("input", { type: "button", className: "navBar-Input", id: "navBar-" + this.props.name, name: "navBar" }),
+					React.createElement("input", { type: "button", className: "navBar-Input", id: "navBar-" + this.props.name, name: "navBar", onClick: function onClick(e) {
+							return _this4.props.scrollTo(_this4.props.name, e);
+						} }),
 					React.createElement(
 						"label",
-						{ htmlFor: "navBar-" + this.props.name, className: "navBar-Object " + this.props.active },
+						{ htmlFor: "navBar-" + this.props.name, className: "navBar-Object " + isActive },
 						React.createElement(
 							"a",
 							null,
@@ -217,11 +277,11 @@
 		function Projects(props) {
 			_classCallCheck(this, Projects);
 	
+			var projects = __webpack_require__(/*! ../project-data.json */ 20);
+	
 			var _this = _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).call(this, props));
 	
-			_this.state = {
-				selectedProject: ""
-			};
+			_this.state = { selectedProject: Object.keys(projects)[0], projects: projects, menuState: "projects" };
 			_this.selectProject = _this.selectProject.bind(_this);
 			return _this;
 		}
@@ -230,17 +290,37 @@
 			key: "selectProject",
 			value: function selectProject(project) {
 				this.setState({ selectedProject: project });
+				if (this.state.menuState == "projects") {
+					setTimeout(function () {
+						document.getElementById("project-DetailsCard").style["transform"] = "translateY(0)";
+					}, 0);
+					this.setState({ menuState: "projectDetails" });
+				} else {
+					setTimeout(function () {
+						document.getElementById("project-DetailsCard").style["transform"] = "translateY(-100vh)";
+					}, 0);
+					this.setState({ menuState: "projects" });
+				}
 			}
 		}, {
 			key: "render",
 			value: function render() {
-				var projects = __webpack_require__(/*! ../project-data.json */ 20);
+				var _this2 = this;
+	
 				return React.createElement(
 					"div",
-					{ className: "project-pageWrapper" },
-					Object.keys(projects).map(function (name, index) {
-						return React.createElement(ProjectCard, { projectName: projects[name]["displayName"], banner: projects[name]["banner"], forked: projects[name]["forked"] });
-					})
+					{ className: "project-pageWrapper", id: this.props.id },
+					Object.keys(this.state.projects).map(function (name, index) {
+						return React.createElement(ProjectCard, {
+							project: name,
+							projectName: _this2.state.projects[name]["displayName"],
+							banner: _this2.state.projects[name]["banner"],
+							forked: _this2.state.projects[name]["forked"],
+							selectProject: _this2.selectProject,
+							key: "projectCardKey-" + name
+						});
+					}),
+					React.createElement(ProjectDetailsCard, { projectName: this.state.selectedProject, selectProject: this.selectProject, projectInfo: this.state.projects })
 				);
 			}
 		}]);
@@ -260,11 +340,13 @@
 		_createClass(ProjectCard, [{
 			key: "render",
 			value: function render() {
+				var _this4 = this;
+	
 				var tag = [];
 				if (this.props.forked == "true") {
 					tag = [React.createElement(
 						"a",
-						{ className: "project-Forked-Tag" },
+						{ className: "project-Forked-Tag", key: "projectCardForkedKey-" + this.props.projectName },
 						"Forked"
 					)];
 				}
@@ -274,7 +356,9 @@
 					React.createElement(
 						_reactTilt2.default,
 						{ options: { max: 20, scale: 1, reverse: true } },
-						React.createElement("div", { className: "project-Click-Wrapper" }),
+						React.createElement("div", { className: "project-Click-Wrapper", onClick: function onClick(e) {
+								return _this4.props.selectProject(_this4.props.project, e);
+							} }),
 						React.createElement("img", { src: this.props.banner, className: "project-Banner" }),
 						tag
 					),
@@ -302,38 +386,45 @@
 		_createClass(ProjectDetailsCard, [{
 			key: "render",
 			value: function render() {
+				var _this6 = this;
+	
+				if (this.props.projectName != "") {
+					var projectInfo = this.props.projectInfo[this.props.projectName];
+				} else {
+					var projectInfo = this.props.projectInfo[this.props.projectName];
+				}
 				return React.createElement(
 					"div",
-					{ className: "project-DetailsCard" },
+					{ className: "project-DetailsCard", id: "project-DetailsCard" },
 					React.createElement("img", { src: "./assets/icons/left-chevron.png", className: "project-Left-Arrow" }),
-					React.createElement("img", { src: "./assets/projectBanners/" + this.props.projectName.toLowerCase().replace(/ /g, "-") + ".png", className: "project-Details-Banner" }),
+					React.createElement("img", { src: projectInfo["banner"], className: "project-Details-Banner" }),
 					React.createElement("img", { src: "./assets/icons/right-chevron.png", className: "project-Right-Arrow" }),
 					React.createElement(
 						"a",
 						{ className: "project-Details-Name" },
-						this.props.projectName
+						projectInfo["displayName"]
 					),
 					React.createElement(
 						"div",
 						{ className: "project-Details-InfoPanel" },
 						React.createElement(
-							"a",
+							"p",
 							{ className: "project-Details-InfoPanel-Header" },
-							"Latest Release:",
+							"Latest Release: ",
 							React.createElement(
 								"a",
 								{ className: "highlight" },
-								" v1.0.0"
+								projectInfo["latestRelease"]
 							)
 						),
 						React.createElement(
-							"a",
+							"p",
 							{ className: "project-Details-InfoPanel-Header" },
 							"Dev Team Size: ",
 							React.createElement(
 								"a",
 								{ className: "highlight" },
-								"2"
+								projectInfo["devTeamSize"]
 							)
 						),
 						React.createElement(
@@ -341,41 +432,27 @@
 							{ className: "project-Details-InfoPanel-Header" },
 							"Languages"
 						),
-						React.createElement(
-							"a",
-							{ className: "project-Details-InfoPanel-ListItem" },
-							"> HTML, CSS, Javascript"
-						),
-						React.createElement(
-							"a",
-							{ className: "project-Details-InfoPanel-ListItem" },
-							"> Python3"
-						),
+						projectInfo["languages"].map(function (language, index) {
+							return React.createElement(
+								"a",
+								{ className: "project-Details-InfoPanel-ListItem" },
+								"> ",
+								language
+							);
+						}),
 						React.createElement(
 							"h1",
 							{ className: "project-Details-InfoPanel-Header" },
 							"Frameworks"
 						),
-						React.createElement(
-							"a",
-							{ className: "project-Details-InfoPanel-ListItem" },
-							"> Electron"
-						),
-						React.createElement(
-							"a",
-							{ className: "project-Details-InfoPanel-ListItem" },
-							"> ReactJS"
-						),
-						React.createElement(
-							"a",
-							{ className: "project-Details-InfoPanel-ListItem" },
-							"> Proton Native"
-						),
-						React.createElement(
-							"a",
-							{ className: "project-Details-InfoPanel-ListItem" },
-							"> React Native"
-						)
+						projectInfo["frameworks"].map(function (framework, index) {
+							return React.createElement(
+								"a",
+								{ className: "project-Details-InfoPanel-ListItem" },
+								"> ",
+								framework
+							);
+						})
 					),
 					React.createElement(
 						"div",
@@ -383,22 +460,19 @@
 						React.createElement(
 							"h2",
 							null,
-							"CryptoCurrency Portfolio Management and Auto-Trading Suite"
+							projectInfo["projectDescriptionHeader"]
 						),
 						React.createElement(
-							"a",
+							"p",
 							null,
-							"Prometheus utilises realtime price and portfolio holdings tracking on multiple leading Australian Cryptocurrency Exchanges. "
-						),
-						React.createElement(
-							"a",
-							null,
-							"Originally written with ReactJS and Electron for Linux based operating systems, Prometheus was ported to Proton Native and React Native supporting both Desktop and Mobile Devices"
+							projectInfo["projectDescription"]
 						)
 					),
 					React.createElement(
 						"div",
-						{ className: "project-Return" },
+						{ className: "project-Return", onClick: function onClick(e) {
+								return _this6.props.selectProject(_this6.props.projectName, e);
+							} },
 						React.createElement("img", { src: "./assets/icons/left-chevron.png", className: "project-ReturnIcon" }),
 						React.createElement(
 							"a",
@@ -408,7 +482,9 @@
 					),
 					React.createElement(
 						"div",
-						{ className: "project-GithubCard" },
+						{ className: "project-GithubCard", onClick: function onClick(e) {
+								return window.open(projectInfo["githubLink"], '_blank');
+							} },
 						React.createElement(
 							"a",
 							{ className: "project-LinkText" },
@@ -418,7 +494,9 @@
 					),
 					React.createElement(
 						"div",
-						{ className: "project-DownloadCard" },
+						{ className: "project-DownloadCard", onClick: function onClick(e) {
+								return window.open(projectInfo["downloadLink"]);
+							} },
 						React.createElement(
 							"a",
 							{ className: "project-LinkText" },
@@ -29750,7 +29828,7 @@
 
 	"use strict";
 	
-	module.exports = { "mandelbrotSet": { "displayName": "Mandelbrot Set", "banner": "./assets/projectBanners/mandelbrot-set.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript", "Python3"], "frameworks": ["Electron"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" }, "coinspotAPINodeModule": { "displayName": "Coinspot API Node Module", "banner": "./assets/projectBanners/coinspot-api-node-module.png", "forked": "true", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript", "Python3"], "frameworks": ["Electron"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" }, "firefoxDarkThemePlugin": { "displayName": "Firefox Dark Theme Plugin", "banner": "./assets/projectBanners/firefox-dark-theme-plugin.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript", "Python3"], "frameworks": ["Electron"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" }, "prometheus": { "displayName": "Prometheus", "banner": "./assets/projectBanners/prometheus.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript", "Python3"], "frameworks": ["Electron"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" } };
+	module.exports = { "mandelbrotSet": { "displayName": "Mandelbrot Set", "banner": "./assets/projectBanners/mandelbrot-set.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Python3"], "frameworks": ["Pygame"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com/Alternus/Pygame-Mandelbrot-Set", "downloadLink": "https://github.com/Alternus/Pygame-Mandelbrot-Set/archive/master.zip", "projectDescriptionHeader": "A beautiful visualisation of the Mandelbrot Set written in Python3 with Pygame", "projectDescription": "This project is the result of my year 12 Complex Numbers assignment for Specialist Mathematics, It uses a combination of simultantious multiprocessing and Just-In-Time compilation from the Numba library to optimise the rendering of the set. These optimization techniques allow for the program to render on a i5 7500 (4Core 4Thread CPU from 2017) a precision of 20,000 within 5.5 seconds for a 850x850 resolution image." }, "coinspotAPINodeModule": { "displayName": "Coinspot API Node Module", "banner": "./assets/projectBanners/coinspot-api-node-module.png", "forked": "true", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript"], "frameworks": [], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" }, "firefoxDarkThemePlugin": { "displayName": "Firefox Dark Theme Plugin", "banner": "./assets/projectBanners/firefox-dark-theme-plugin.png", "forked": "false", "private": "false", "latestRelease": "v1.0.0", "devTeamSize": 1, "languages": ["CSS", "Javascript"], "frameworks": [], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" }, "prometheus": { "displayName": "Prometheus", "banner": "./assets/projectBanners/prometheus.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 2, "languages": ["HTML, CSS, Javascript", "Python3"], "frameworks": ["Electron", "Proton Native", "React Native", "ReactJS"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "Cryptocurrency Portfolio Managment App For Desktop and Mobile", "projectDescription": "" } };
 
 /***/ }),
 /* 21 */
@@ -29787,25 +29865,99 @@
 			value: function render() {
 				return React.createElement(
 					"div",
-					{ className: "skills-Card" },
+					{ className: "skills-Card", id: this.props.id },
 					React.createElement(
 						"h1",
 						{ className: "skills-List-Header" },
 						"Programming Languages"
 					),
-					React.createElement(SkillsList, { list: ["Python3", "C++", "C#", "Java", "HTML, CSS, Javascript, PHP, mySQL", ["ReactJS", "Electron", "Proton Native", "React Native"]] }),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> Python3"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> C++"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> C#"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> Java"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> HTML, CSS, Javascript, PHP, mySQL"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Sub-Item" },
+						"> ReactJS"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Sub-Item" },
+						"> Electron"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Sub-Item" },
+						"> Proton Native"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Sub-Item" },
+						"> React Native"
+					),
 					React.createElement(
 						"h1",
 						{ className: "skills-List-Header" },
 						"Developer Tools"
 					),
-					React.createElement(SkillsList, { list: ["Atom", "Visual Studio", "Terminal", "Git & Github", "npm"] }),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> Atom"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> Visual Studio"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> Terminal"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> Git & Github"
+					),
+					React.createElement(
+						"a",
+						{ className: "skills-List-Item" },
+						"> npm"
+					),
 					React.createElement(
 						"h1",
 						{ className: "skills-List-Header" },
 						"Experienced Systems"
 					),
-					React.createElement(SystemsFlex, null)
+					React.createElement(
+						"div",
+						{ className: "skills-Systems-Wrapper" },
+						React.createElement(SystemOS, { os: "Windows" }),
+						React.createElement(SystemOS, { os: "Linux" }),
+						React.createElement(SystemOS, { os: "Andriod" })
+					)
 				);
 			}
 		}]);
@@ -29813,33 +29965,8 @@
 		return SkillsCard;
 	}(React.Component);
 	
-	var SystemsFlex = function (_React$Component2) {
-		_inherits(SystemsFlex, _React$Component2);
-	
-		function SystemsFlex() {
-			_classCallCheck(this, SystemsFlex);
-	
-			return _possibleConstructorReturn(this, (SystemsFlex.__proto__ || Object.getPrototypeOf(SystemsFlex)).apply(this, arguments));
-		}
-	
-		_createClass(SystemsFlex, [{
-			key: "render",
-			value: function render() {
-				return React.createElement(
-					"div",
-					{ className: "skills-Systems-Wrapper" },
-					React.createElement(SystemOS, { os: "Windows" }),
-					React.createElement(SystemOS, { os: "Linux" }),
-					React.createElement(SystemOS, { os: "Andriod" })
-				);
-			}
-		}]);
-	
-		return SystemsFlex;
-	}(React.Component);
-	
-	var SystemOS = function (_React$Component3) {
-		_inherits(SystemOS, _React$Component3);
+	var SystemOS = function (_React$Component2) {
+		_inherits(SystemOS, _React$Component2);
 	
 		function SystemOS() {
 			_classCallCheck(this, SystemOS);
@@ -29864,92 +29991,6 @@
 		}]);
 	
 		return SystemOS;
-	}(React.Component);
-	
-	var SkillsList = function (_React$Component4) {
-		_inherits(SkillsList, _React$Component4);
-	
-		function SkillsList() {
-			_classCallCheck(this, SkillsList);
-	
-			return _possibleConstructorReturn(this, (SkillsList.__proto__ || Object.getPrototypeOf(SkillsList)).apply(this, arguments));
-		}
-	
-		_createClass(SkillsList, [{
-			key: "render",
-			value: function render() {
-				var list = [];
-				var _iteratorNormalCompletion = true;
-				var _didIteratorError = false;
-				var _iteratorError = undefined;
-	
-				try {
-					for (var _iterator = this.props.list[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-						var x = _step.value;
-	
-						if (Object.prototype.toString.call(x) === '[object Array]') {
-							var _iteratorNormalCompletion2 = true;
-							var _didIteratorError2 = false;
-							var _iteratorError2 = undefined;
-	
-							try {
-								for (var _iterator2 = x[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-									var y = _step2.value;
-	
-									list.push(React.createElement(
-										"a",
-										{ className: "skills-List-Sub-Item" },
-										"> ",
-										y
-									));
-								}
-							} catch (err) {
-								_didIteratorError2 = true;
-								_iteratorError2 = err;
-							} finally {
-								try {
-									if (!_iteratorNormalCompletion2 && _iterator2.return) {
-										_iterator2.return();
-									}
-								} finally {
-									if (_didIteratorError2) {
-										throw _iteratorError2;
-									}
-								}
-							}
-						} else {
-							list.push(React.createElement(
-								"a",
-								{ className: "skills-List-Item" },
-								"> ",
-								x
-							));
-						}
-					}
-				} catch (err) {
-					_didIteratorError = true;
-					_iteratorError = err;
-				} finally {
-					try {
-						if (!_iteratorNormalCompletion && _iterator.return) {
-							_iterator.return();
-						}
-					} finally {
-						if (_didIteratorError) {
-							throw _iteratorError;
-						}
-					}
-				}
-	
-				return React.createElement(
-					"div",
-					null,
-					list
-				);
-			}
-		}]);
-	
-		return SkillsList;
 	}(React.Component);
 
 /***/ }),
@@ -29987,7 +30028,7 @@
 			value: function render() {
 				return React.createElement(
 					"div",
-					{ className: "contactCard" },
+					{ className: "contactCard", id: this.props.id },
 					React.createElement(
 						"h1",
 						{ className: "contact-Header" },
@@ -30043,7 +30084,7 @@
 			value: function render() {
 				return React.createElement(
 					"div",
-					{ className: "educationAwards-Card" },
+					{ className: "educationAwards-Card", id: this.props.id },
 					React.createElement(
 						"h1",
 						{ className: "skills-List-Header" },
