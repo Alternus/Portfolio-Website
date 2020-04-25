@@ -29,6 +29,7 @@
 	width: 350px;
 	height: 197px;
 	transition: filter 0.5s;
+	border-radius: 4px;
 	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
 }
 
@@ -66,4 +67,181 @@
 		margin-left: 0px;
 		margin-bottom: 20px;
 	}
+}
+
+/* Project Details Card */
+
+.project-DetailsCard {
+	width: calc(98vw - 40px );
+	min-height: calc(91.5vh - 100px);
+	background-color: var(--menu);
+	position: absolute;
+	border-radius: 4px;
+	margin-left: 30px;
+	padding-top: 1px;
+	top: calc(50px + 0.5vh);
+	padding-bottom: 20px;
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+}
+
+.project-Details-Banner {
+	width: 455px;
+	height: 256px;
+	transition: filter 0.5s;
+	border-radius: 4px;
+	margin-top: 20px;
+	margin-left: 68px;
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+}
+
+.project-Left-Arrow {
+	height: 48px;
+	position: absolute;
+	cursor: pointer;
+	top: 128px;
+	left: 20px;
+}
+
+.project-Left-Arrow:hover {
+	filter: brightness(0) saturate(100%) invert(59%) sepia(52%) saturate(901%) hue-rotate(102deg) brightness(101%) contrast(102%);
+}
+
+.project-Right-Arrow {
+	height: 48px;
+	position: absolute;
+	cursor: pointer;
+	top: 128px;
+	left: 523px;
+}
+
+.project-Right-Arrow:hover {
+	filter: brightness(0) saturate(100%) invert(59%) sepia(52%) saturate(901%) hue-rotate(102deg) brightness(101%) contrast(102%);
+}
+
+.project-Expand {
+	position: absolute;
+	z-index: 3;
+	width: 32px;
+	top: 232px;
+	left: 479px;
+}
+
+.project-Details-Name {
+	font-size: 2.5em;
+	position: absolute;
+	left: 591px;
+	top: 20px;
+}
+
+.project-Details-InfoPanel {
+	height: calc(91.5vh - 100px - 60px - 256px);
+	position: absolute;
+	left: 68px;
+	bottom: 20px;
+}
+
+.project-Details-InfoPanel-Header {
+	font-size: 2em;
+	margin-left: 20px;
+	margin-bottom: 15px;
+	display: block;
+}
+
+.project-Details-InfoPanel-ListItem {
+	font-size: 1em;
+	display: block;
+	margin-left: 40px;
+	margin-top: 4px;
+	color: var(--highlight);
+}
+
+.project-GithubCard {
+	height: 64px;
+	width: 238px;
+	border-radius: 4px;
+	position: absolute;
+	line-height: 64px;
+	padding-left: 12px;
+	cursor: pointer;
+	right: 20px;
+	top: 40%;
+	background-color: var(--menu-sub);
+	box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.5);
+}
+
+.project-DownloadCard {
+	height: 64px;
+	width: 238px;
+	border-radius: 4px;
+	position: absolute;
+	line-height: 64px;
+	padding-left: 12px;
+	cursor: pointer;
+	right: 20px;
+	top: calc(40% + 84px);
+	background-color: var(--menu-sub);
+	box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.5);
+}
+
+.project-LinkText {
+	font-size: 1.2em;
+	color: var(--font);
+}
+
+.project-LinkIcon {
+	height: 48px;
+	float: right;
+	margin-right: 12px;
+	margin-top: 8px;
+}
+
+.project-GithubCard:hover .project-LinkText {
+	color: var(--highlight);
+}
+
+.project-DownloadCard:hover .project-LinkText {
+	color: var(--highlight);
+}
+
+.project-GithubCard:hover .project-LinkIcon {
+	filter: brightness(0) saturate(100%) invert(59%) sepia(52%) saturate(901%) hue-rotate(102deg) brightness(101%) contrast(102%);
+}
+
+.project-DownloadCard:hover .project-LinkIcon {
+	filter: brightness(0) saturate(100%) invert(59%) sepia(52%) saturate(901%) hue-rotate(102deg) brightness(101%) contrast(102%);
+}
+
+.project-Return {
+	height: 64px;
+	width: 238px;
+	position: absolute;
+	line-height: 64px;
+	padding-left: 12px;
+	cursor: pointer;
+	right: 20px;
+	top: 20px;
+}
+
+.project-ReturnText {
+	font-size: 2em;
+	margin-left: 12px;
+}
+
+.project-ReturnIcon {
+	height: 48px;
+	float: left;
+	margin-left: 12px;
+	margin-top: 8px;
+}
+
+.project-DescriptionWrapper {
+	position: absolute;
+	left: 571px;
+	width: calc(95% - 571px - 290px);
+
+}
+
+
+.highlight {
+	color: var(--highlight);
 }

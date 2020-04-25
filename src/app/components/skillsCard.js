@@ -3,7 +3,7 @@ export class SkillsCard extends React.Component {
 		return(
 			<div className="skills-Card">
 				<h1 className="skills-List-Header">Programming Languages</h1>
-				<SkillsList list={["Python3","C++","C#","Java","HTML, CSS, Javascript",["ReactJS","React Native"]]} />
+				<SkillsList list={["Python3","C++","C#","Java","HTML, CSS, Javascript, PHP, mySQL",["ReactJS","Electron","Proton Native","React Native"]]} />
 				<h1 className="skills-List-Header">Developer Tools</h1>
 				<SkillsList list={["Atom","Visual Studio","Terminal","Git & Github","npm"]} />
 				<h1 className="skills-List-Header">Experienced Systems</h1>

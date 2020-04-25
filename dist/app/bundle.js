@@ -55,11 +55,11 @@
 	
 	var _projects = __webpack_require__(/*! ./components/projects.js */ 2);
 	
-	var _skillsCard = __webpack_require__(/*! ./components/skillsCard.js */ 20);
+	var _skillsCard = __webpack_require__(/*! ./components/skillsCard.js */ 21);
 	
-	var _contact = __webpack_require__(/*! ./components/contact.js */ 21);
+	var _contact = __webpack_require__(/*! ./components/contact.js */ 22);
 	
-	var _educationAwardsCard = __webpack_require__(/*! ./components/educationAwardsCard.js */ 22);
+	var _educationAwardsCard = __webpack_require__(/*! ./components/educationAwardsCard.js */ 23);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -214,22 +214,33 @@
 	var Projects = exports.Projects = function (_React$Component) {
 		_inherits(Projects, _React$Component);
 	
-		function Projects() {
+		function Projects(props) {
 			_classCallCheck(this, Projects);
 	
-			return _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).call(this, props));
+	
+			_this.state = {
+				selectedProject: ""
+			};
+			_this.selectProject = _this.selectProject.bind(_this);
+			return _this;
 		}
 	
 		_createClass(Projects, [{
+			key: "selectProject",
+			value: function selectProject(project) {
+				this.setState({ selectedProject: project });
+			}
+		}, {
 			key: "render",
 			value: function render() {
+				var projects = __webpack_require__(/*! ../project-data.json */ 20);
 				return React.createElement(
 					"div",
 					{ className: "project-pageWrapper" },
-					React.createElement(ProjectCard, { projectName: "Mandelbrot Set" }),
-					React.createElement(ProjectCard, { projectName: "Coinspot API Node Module", forked: "True" }),
-					React.createElement(ProjectCard, { projectName: "Firefox Dark Theme Plugin" }),
-					React.createElement(ProjectCard, { projectName: "Prometheus" })
+					Object.keys(projects).map(function (name, index) {
+						return React.createElement(ProjectCard, { projectName: projects[name]["displayName"], banner: projects[name]["banner"], forked: projects[name]["forked"] });
+					})
 				);
 			}
 		}]);
@@ -250,7 +261,7 @@
 			key: "render",
 			value: function render() {
 				var tag = [];
-				if (this.props.forked == "True") {
+				if (this.props.forked == "true") {
 					tag = [React.createElement(
 						"a",
 						{ className: "project-Forked-Tag" },
@@ -264,7 +275,7 @@
 						_reactTilt2.default,
 						{ options: { max: 20, scale: 1, reverse: true } },
 						React.createElement("div", { className: "project-Click-Wrapper" }),
-						React.createElement("img", { src: "./assets/projectBanners/" + this.props.projectName.toLowerCase().replace(/ /g, "-") + ".png", className: "project-Banner" }),
+						React.createElement("img", { src: this.props.banner, className: "project-Banner" }),
 						tag
 					),
 					React.createElement(
@@ -277,6 +288,149 @@
 		}]);
 	
 		return ProjectCard;
+	}(React.Component);
+	
+	var ProjectDetailsCard = function (_React$Component3) {
+		_inherits(ProjectDetailsCard, _React$Component3);
+	
+		function ProjectDetailsCard() {
+			_classCallCheck(this, ProjectDetailsCard);
+	
+			return _possibleConstructorReturn(this, (ProjectDetailsCard.__proto__ || Object.getPrototypeOf(ProjectDetailsCard)).apply(this, arguments));
+		}
+	
+		_createClass(ProjectDetailsCard, [{
+			key: "render",
+			value: function render() {
+				return React.createElement(
+					"div",
+					{ className: "project-DetailsCard" },
+					React.createElement("img", { src: "./assets/icons/left-chevron.png", className: "project-Left-Arrow" }),
+					React.createElement("img", { src: "./assets/projectBanners/" + this.props.projectName.toLowerCase().replace(/ /g, "-") + ".png", className: "project-Details-Banner" }),
+					React.createElement("img", { src: "./assets/icons/right-chevron.png", className: "project-Right-Arrow" }),
+					React.createElement(
+						"a",
+						{ className: "project-Details-Name" },
+						this.props.projectName
+					),
+					React.createElement(
+						"div",
+						{ className: "project-Details-InfoPanel" },
+						React.createElement(
+							"a",
+							{ className: "project-Details-InfoPanel-Header" },
+							"Latest Release:",
+							React.createElement(
+								"a",
+								{ className: "highlight" },
+								" v1.0.0"
+							)
+						),
+						React.createElement(
+							"a",
+							{ className: "project-Details-InfoPanel-Header" },
+							"Dev Team Size: ",
+							React.createElement(
+								"a",
+								{ className: "highlight" },
+								"2"
+							)
+						),
+						React.createElement(
+							"h1",
+							{ className: "project-Details-InfoPanel-Header" },
+							"Languages"
+						),
+						React.createElement(
+							"a",
+							{ className: "project-Details-InfoPanel-ListItem" },
+							"> HTML, CSS, Javascript"
+						),
+						React.createElement(
+							"a",
+							{ className: "project-Details-InfoPanel-ListItem" },
+							"> Python3"
+						),
+						React.createElement(
+							"h1",
+							{ className: "project-Details-InfoPanel-Header" },
+							"Frameworks"
+						),
+						React.createElement(
+							"a",
+							{ className: "project-Details-InfoPanel-ListItem" },
+							"> Electron"
+						),
+						React.createElement(
+							"a",
+							{ className: "project-Details-InfoPanel-ListItem" },
+							"> ReactJS"
+						),
+						React.createElement(
+							"a",
+							{ className: "project-Details-InfoPanel-ListItem" },
+							"> Proton Native"
+						),
+						React.createElement(
+							"a",
+							{ className: "project-Details-InfoPanel-ListItem" },
+							"> React Native"
+						)
+					),
+					React.createElement(
+						"div",
+						{ className: "project-DescriptionWrapper" },
+						React.createElement(
+							"h2",
+							null,
+							"CryptoCurrency Portfolio Management and Auto-Trading Suite"
+						),
+						React.createElement(
+							"a",
+							null,
+							"Prometheus utilises realtime price and portfolio holdings tracking on multiple leading Australian Cryptocurrency Exchanges. "
+						),
+						React.createElement(
+							"a",
+							null,
+							"Originally written with ReactJS and Electron for Linux based operating systems, Prometheus was ported to Proton Native and React Native supporting both Desktop and Mobile Devices"
+						)
+					),
+					React.createElement(
+						"div",
+						{ className: "project-Return" },
+						React.createElement("img", { src: "./assets/icons/left-chevron.png", className: "project-ReturnIcon" }),
+						React.createElement(
+							"a",
+							{ className: "project-ReturnText" },
+							"Return"
+						)
+					),
+					React.createElement(
+						"div",
+						{ className: "project-GithubCard" },
+						React.createElement(
+							"a",
+							{ className: "project-LinkText" },
+							"View On Github"
+						),
+						React.createElement("img", { src: "./assets/icons/github.png", className: "project-LinkIcon" })
+					),
+					React.createElement(
+						"div",
+						{ className: "project-DownloadCard" },
+						React.createElement(
+							"a",
+							{ className: "project-LinkText" },
+							"Download Latest"
+						),
+						React.createElement("img", { src: "./assets/icons/download.png", className: "project-LinkIcon" })
+					)
+				);
+			}
+		}]);
+	
+		return ProjectDetailsCard;
 	}(React.Component);
 
 /***/ }),
@@ -29589,6 +29743,17 @@
 
 /***/ }),
 /* 20 */
+/*!***********************************!*\
+  !*** ./src/app/project-data.json ***!
+  \***********************************/
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	module.exports = { "mandelbrotSet": { "displayName": "Mandelbrot Set", "banner": "./assets/projectBanners/mandelbrot-set.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript", "Python3"], "frameworks": ["Electron"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" }, "coinspotAPINodeModule": { "displayName": "Coinspot API Node Module", "banner": "./assets/projectBanners/coinspot-api-node-module.png", "forked": "true", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript", "Python3"], "frameworks": ["Electron"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" }, "firefoxDarkThemePlugin": { "displayName": "Firefox Dark Theme Plugin", "banner": "./assets/projectBanners/firefox-dark-theme-plugin.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript", "Python3"], "frameworks": ["Electron"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" }, "prometheus": { "displayName": "Prometheus", "banner": "./assets/projectBanners/prometheus.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript", "Python3"], "frameworks": ["Electron"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com", "downloadLink": "", "projectDescriptionHeader": "", "projectDescription": "" } };
+
+/***/ }),
+/* 21 */
 /*!******************************************!*\
   !*** ./src/app/components/skillsCard.js ***!
   \******************************************/
@@ -29628,7 +29793,7 @@
 						{ className: "skills-List-Header" },
 						"Programming Languages"
 					),
-					React.createElement(SkillsList, { list: ["Python3", "C++", "C#", "Java", "HTML, CSS, Javascript", ["ReactJS", "React Native"]] }),
+					React.createElement(SkillsList, { list: ["Python3", "C++", "C#", "Java", "HTML, CSS, Javascript, PHP, mySQL", ["ReactJS", "Electron", "Proton Native", "React Native"]] }),
 					React.createElement(
 						"h1",
 						{ className: "skills-List-Header" },
@@ -29788,7 +29953,7 @@
 	}(React.Component);
 
 /***/ }),
-/* 21 */
+/* 22 */
 /*!***************************************!*\
   !*** ./src/app/components/contact.js ***!
   \***************************************/
@@ -29833,9 +29998,9 @@
 						{ className: "contact-Text" },
 						" Have a inquiry or want to work together? "
 					),
-					React.createElement("input", { type: "text", className: "contact-Input-Field", placeHolder: "Name" }),
-					React.createElement("input", { type: "text", className: "contact-Input-Field", placeHolder: "Email" }),
-					React.createElement("textarea", { type: "text", className: "contact-Message-Input-Field", placeHolder: "Message" })
+					React.createElement("input", { type: "text", className: "contact-Input-Field", placeholder: "Name" }),
+					React.createElement("input", { type: "text", className: "contact-Input-Field", placeholder: "Email" }),
+					React.createElement("textarea", { type: "text", className: "contact-Message-Input-Field", placeholder: "Message" })
 				);
 			}
 		}]);
@@ -29844,7 +30009,7 @@
 	}(React.Component);
 
 /***/ }),
-/* 22 */
+/* 23 */
 /*!***************************************************!*\
   !*** ./src/app/components/educationAwardsCard.js ***!
   \***************************************************/
@@ -29882,7 +30047,7 @@
 					React.createElement(
 						"h1",
 						{ className: "skills-List-Header" },
-						"College"
+						"Current College Courses"
 					),
 					React.createElement(
 						"a",

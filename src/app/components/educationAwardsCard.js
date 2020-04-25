@@ -2,7 +2,7 @@ export class EducationAwardsCard extends React.Component {
 	render() {
 		return(
 			<div className="educationAwards-Card">
-				<h1 className="skills-List-Header" >College</h1>
+				<h1 className="skills-List-Header" >Current College Courses</h1>
 				<a className="skills-List-Item" >&gt; Specialist Mathematics - Major</a>
 				<a className="skills-List-Item" >&gt; Specialist Methods - Major</a>
 				<a className="skills-List-Item" >&gt; Programming - Major</a>

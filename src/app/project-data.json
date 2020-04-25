@@ -1,0 +1,62 @@
+{
+	"mandelbrotSet": {
+		"displayName": "Mandelbrot Set",
+		"banner": "./assets/projectBanners/mandelbrot-set.png",
+		"forked": "false",
+		"private": "false",
+		"latestRelease": "v0.0.0",
+		"devTeamSize": 1,
+		"languages": ["Javascript","Python3"],
+		"frameworks": ["Electron"],
+		"images": ["/assets/projectImages/1.png"],
+		"githubLink": "https://github.com",
+		"downloadLink": "",
+		"projectDescriptionHeader": "",
+		"projectDescription": ""
+	},
+	"coinspotAPINodeModule": {
+		"displayName": "Coinspot API Node Module",
+		"banner": "./assets/projectBanners/coinspot-api-node-module.png",
+		"forked": "true",
+		"private": "false",
+		"latestRelease": "v0.0.0",
+		"devTeamSize": 1,
+		"languages": ["Javascript","Python3"],
+		"frameworks": ["Electron"],
+		"images": ["/assets/projectImages/1.png"],
+		"githubLink": "https://github.com",
+		"downloadLink": "",
+		"projectDescriptionHeader": "",
+		"projectDescription": ""
+	},
+	"firefoxDarkThemePlugin": {
+		"displayName": "Firefox Dark Theme Plugin",
+		"banner": "./assets/projectBanners/firefox-dark-theme-plugin.png",
+		"forked": "false",
+		"private": "false",
+		"latestRelease": "v0.0.0",
+		"devTeamSize": 1,
+		"languages": ["Javascript","Python3"],
+		"frameworks": ["Electron"],
+		"images": ["/assets/projectImages/1.png"],
+		"githubLink": "https://github.com",
+		"downloadLink": "",
+		"projectDescriptionHeader": "",
+		"projectDescription": ""
+	},
+	"prometheus": {
+		"displayName": "Prometheus",
+		"banner": "./assets/projectBanners/prometheus.png",
+		"forked": "false",
+		"private": "false",
+		"latestRelease": "v0.0.0",
+		"devTeamSize": 1,
+		"languages": ["Javascript","Python3"],
+		"frameworks": ["Electron"],
+		"images": ["/assets/projectImages/1.png"],
+		"githubLink": "https://github.com",
+		"downloadLink": "",
+		"projectDescriptionHeader": "",
+		"projectDescription": ""
+	}
+}

@@ -21,6 +21,6 @@ class WebPage extends React.Component {
 }
 
 ReactDOM.render(
-	<WebPage/>,
-	document.getElementById('main')
+	<WebPage/>
+	, document.getElementById('main')
 );
