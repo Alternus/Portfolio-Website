@@ -24,10 +24,10 @@
 		"languages": ["Javascript"],
 		"frameworks": [],
 		"images": ["/assets/projectImages/1.png"],
-		"githubLink": "https://github.com",
-		"downloadLink": "",
-		"projectDescriptionHeader": "",
-		"projectDescription": ""
+		"githubLink": "https://github.com/Alternus/npm-coinspot-api",
+		"downloadLink": "https://github.com/Alternus/npm-coinspot-api/archive/master.zip",
+		"projectDescriptionHeader": "An unofficial fork of the Coinspot Node API featuring support for the latest API endpoints",
+		"projectDescription": "Forked from the original Coinspot Node API which hasn't been updated in over 6 years, this project adds support for the read-only API endpoints and new price fetch functions."
 	},
 	"firefoxDarkThemePlugin": {
 		"displayName": "Firefox Dark Theme Plugin",
@@ -49,14 +49,14 @@
 		"banner": "./assets/projectBanners/prometheus.png",
 		"forked": "false",
 		"private": "false",
-		"latestRelease": "v0.0.0",
+		"latestRelease": "v0.2.0",
 		"devTeamSize": 2,
 		"languages": ["HTML, CSS, Javascript","Python3"],
 		"frameworks": ["Electron","Proton Native","React Native","ReactJS"],
 		"images": ["/assets/projectImages/1.png"],
 		"githubLink": "https://github.com",
 		"downloadLink": "",
-		"projectDescriptionHeader": "Cryptocurrency Portfolio Managment App For Desktop and Mobile",
+		"projectDescriptionHeader": "Cryptocurrency Portfolio Managment App For Desktop and Mobile - Private Project",
 		"projectDescription": ""
 	}
 }

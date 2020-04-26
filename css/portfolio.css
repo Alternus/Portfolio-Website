@@ -89,6 +89,7 @@
 	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
 	transition: transform 0.5s;
 	transform: translateY(-100vh);
+	overflow: hidden;
 }
 
 .project-Details-Banner {
