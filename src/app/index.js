@@ -6,22 +6,6 @@ import { EducationAwardsCard } from './components/educationAwardsCard.js';
 
 class WebPage extends React.Component {
 	render () {
-		const { Client } = require('pg');
-		const client = new Client({
-			connectionString: process.env.DATABASE_URL || "postgres://fnruhhognjxibe:dcef3e6f4191e63a0a80412f5db7ec90e3949fd56ddca93708abc53dd1499401@ec2-35-174-88-65.compute-1.amazonaws.com:5432/dbki8vo9llemnj",
-			ssl: true,
-		});
-
-		client.connect();
-
-		client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-			if (err) throw err;
-				for (let row of res.rows) {
-					console.log(JSON.stringify(row));
-				}
-				client.end();
-		});
-
 		return (
 			<div>
 				<Navbar />
