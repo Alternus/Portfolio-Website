@@ -3,10 +3,10 @@ import { Projects } from './components/projects.js';
 import { SkillsCard } from './components/skillsCard.js';
 import { ContactCard } from './components/contact.js';
 import { EducationAwardsCard } from './components/educationAwardsCard.js';
+const { Client } = require('pg');
 
 class WebPage extends React.Component {
 	render () {
-		const { Client } = require('pg');
 
 		const client = new Client({
 			connectionString: process.env.DATABASE_URL,
