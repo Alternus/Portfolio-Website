@@ -30,6 +30,9 @@ var config = {
     watchOptions: {
         poll: true,
         ignored: /node_modules/
+    },
+    node: {
+        fs: "empty"
     }
 };
 
