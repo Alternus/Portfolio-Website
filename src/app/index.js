@@ -3,13 +3,12 @@ import { Projects } from './components/projects.js';
 import { SkillsCard } from './components/skillsCard.js';
 import { ContactCard } from './components/contact.js';
 import { EducationAwardsCard } from './components/educationAwardsCard.js';
-const { Client } = require('pg');
 
 class WebPage extends React.Component {
 	render () {
-
+		const { Client } = require('pg');
 		const client = new Client({
-			connectionString: process.env.DATABASE_URL,
+			connectionString: process.env.DATABASE_URL || "postgres://fnruhhognjxibe:dcef3e6f4191e63a0a80412f5db7ec90e3949fd56ddca93708abc53dd1499401@ec2-35-174-88-65.compute-1.amazonaws.com:5432/dbki8vo9llemnj",
 			ssl: true,
 		});
 
