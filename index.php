@@ -1,3 +1,35 @@
+<?php
+
+	echo("<script>console.log('PHP: Hello World');</script>");
+	$db = parse_url(getenv("DATABASE_URL"));
+
+
+	$pdo = new PDO("pgsql:" . sprintf(
+		"host=%s;port=%s;user=%s;password=%s;dbname=%s",
+		$db["host"],
+		$db["port"],
+		$db["user"],
+		$db["pass"],
+		ltrim($db["path"], "/")
+	));
+
+
+
+	if (!$pdo) {
+		echo("<script>console.log('PHP: Database connection failed.');</script>");
+	}
+	else {
+		echo("<script>console.log('PHP: Database connection success.');</script>");
+
+		$sql = "SELECT name FROM message";
+		foreach ($pdo->query($sql) as $row)
+		{
+			echo("<script>console.log('PHP: " . $row['name'] ."');</script>");
+		}
+	}
+
+?>
+
 <!doctype html>
 <html lang="en">
 	<head>
