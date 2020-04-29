@@ -11,26 +11,30 @@ export class Projects extends React.Component {
 		this.setState({selectedProject: project});
 		if (this.state.menuState == "projects") {
 			document.getElementById("project-DetailsCard").style["transform"] = "translateY(0)";
+			setTimeout(function() {document.getElementById("projects-Wrapper").style["display"] = "none"}, 500);
 			this.setState({menuState: "projectDetails"});
 		} else {
 			document.getElementById("project-DetailsCard").style["transform"] = "translateY(-100vh)";
+			document.getElementById("projects-Wrapper").style["display"] = "flex";
 			this.setState({menuState: "projects"});
 		}
 	}
 	render() {
 		return(
-			<div className="project-pageWrapper" id={this.props.id}>
-			{(Object.keys(this.state.projects)).map((name, index) => (
-				<ProjectCard
-					project={name}
-					projectName={this.state.projects[name]["displayName"]}
-					banner={this.state.projects[name]["banner"]}
-					forked={this.state.projects[name]["forked"]}
-					private={this.state.projects[name]["private"]}
-					selectProject={this.selectProject}
-					key={"projectCardKey-"+name}
-				/>
-			))}
+			<div className="projects-pageWrapper" id={this.props.id}>
+				<div id="projects-Wrapper">
+					{(Object.keys(this.state.projects)).map((name, index) => (
+						<ProjectCard
+							project={name}
+							projectName={this.state.projects[name]["displayName"]}
+							banner={this.state.projects[name]["banner"]}
+							forked={this.state.projects[name]["forked"]}
+							private={this.state.projects[name]["private"]}
+							selectProject={this.selectProject}
+							key={"projectCardKey-"+name}
+						/>
+					))}
+				</div>
 			<ProjectDetailsCard projectName={this.state.selectedProject} selectProject={this.selectProject} projectInfo={this.state.projects} />
 			</div>
 		);

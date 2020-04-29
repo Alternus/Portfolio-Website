@@ -347,9 +347,13 @@
 				this.setState({ selectedProject: project });
 				if (this.state.menuState == "projects") {
 					document.getElementById("project-DetailsCard").style["transform"] = "translateY(0)";
+					setTimeout(function () {
+						document.getElementById("projects-Wrapper").style["display"] = "none";
+					}, 500);
 					this.setState({ menuState: "projectDetails" });
 				} else {
 					document.getElementById("project-DetailsCard").style["transform"] = "translateY(-100vh)";
+					document.getElementById("projects-Wrapper").style["display"] = "flex";
 					this.setState({ menuState: "projects" });
 				}
 			}
@@ -360,18 +364,22 @@
 	
 				return React.createElement(
 					"div",
-					{ className: "project-pageWrapper", id: this.props.id },
-					Object.keys(this.state.projects).map(function (name, index) {
-						return React.createElement(ProjectCard, {
-							project: name,
-							projectName: _this2.state.projects[name]["displayName"],
-							banner: _this2.state.projects[name]["banner"],
-							forked: _this2.state.projects[name]["forked"],
-							"private": _this2.state.projects[name]["private"],
-							selectProject: _this2.selectProject,
-							key: "projectCardKey-" + name
-						});
-					}),
+					{ className: "projects-pageWrapper", id: this.props.id },
+					React.createElement(
+						"div",
+						{ id: "projects-Wrapper" },
+						Object.keys(this.state.projects).map(function (name, index) {
+							return React.createElement(ProjectCard, {
+								project: name,
+								projectName: _this2.state.projects[name]["displayName"],
+								banner: _this2.state.projects[name]["banner"],
+								forked: _this2.state.projects[name]["forked"],
+								"private": _this2.state.projects[name]["private"],
+								selectProject: _this2.selectProject,
+								key: "projectCardKey-" + name
+							});
+						})
+					),
 					React.createElement(ProjectDetailsCard, { projectName: this.state.selectedProject, selectProject: this.selectProject, projectInfo: this.state.projects })
 				);
 			}

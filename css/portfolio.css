@@ -1,8 +1,16 @@
-.project-pageWrapper {
+.projects-pageWrapper {
 	width: calc(98vw - 40px );
 	min-height: calc(91.5vh - 100px);
 	margin-left: calc(1vw);
 	padding-top: calc(50px + 8vh);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+#projects-Wrapper {
+	width: calc(98vw - 40px );
+	min-height: calc(91.5vh - 100px);
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
@@ -117,7 +125,7 @@
 	margin-left: 68px;
 	z-index: 5;
 	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
-	transition: height 0.5s, width 0.5s;
+	/*transition: height 0.5s, width 0.5s;*/
 }
 
 .project-Left-Arrow {
@@ -268,11 +276,53 @@
 	position: absolute;
 	left: 571px;
 	top: 324px;
-	width: calc(95% - 671px - 380px);
+	width: calc(95% - 671px - 280px);
 	white-space: pre-line;
 }
 
-
 .highlight {
 	color: var(--highlight);
+}
+
+@media only screen and (max-width: 1380px) {
+	.project-DescriptionWrapper {
+		top: 200px;
+		width: calc(95% - 671px - 200px);
+	}
+	.project-Details-Name {
+		width: calc(95% - 671px - 200px);
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	.project-DescriptionWrapper {
+		display: none;
+	}
+	.project-Details-Name {
+		display: none;
+	}
+}
+@media only screen and (max-width: 820px) {
+	.project-Details-Banner {
+		width: calc(98vw - 80px );
+		height: auto;
+		margin-left: 20px;
+	}
+	.project-Return {
+		height: 64px;
+		width: 238px;
+		left: 20px;
+		top: auto;
+		bottom: 20px;
+	}
+	.project-Details-InfoPanel {
+		display: none;
+	}
+	.project-GithubCard {
+		top: 60%;
+	}
+	.project-DownloadCard {
+		top: calc(60% + 84px);
+	}
+
 }
