@@ -38,13 +38,12 @@ export class Navbar extends React.Component {
     }
 		var skillsCallback = ((entries,o) => {
 			entries.forEach(entry => {
-				console.log(entry.target.id+""+entry.intersectionRatio);
 				if (entry.isIntersecting) {
 					this.setState({selectedElement: entry.target.id});
 				}
 			});
 		})
-    var observer = new IntersectionObserver(skillsCallback, options);
+		var observer = new IntersectionObserver(skillsCallback, options);
 		function observe() {
 			observer.observe( document.querySelector('#projects'));
 			observer.observe( document.querySelector('#skills'));

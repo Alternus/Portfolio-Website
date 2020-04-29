@@ -10,10 +10,10 @@ export class Projects extends React.Component {
 	selectProject(project) {
 		this.setState({selectedProject: project});
 		if (this.state.menuState == "projects") {
-			setTimeout(function() {document.getElementById("project-DetailsCard").style["transform"] = "translateY(0)"}, 0);
+			document.getElementById("project-DetailsCard").style["transform"] = "translateY(0)";
 			this.setState({menuState: "projectDetails"});
 		} else {
-			setTimeout(function() {document.getElementById("project-DetailsCard").style["transform"] = "translateY(-100vh)"}, 0);
+			document.getElementById("project-DetailsCard").style["transform"] = "translateY(-100vh)";
 			this.setState({menuState: "projects"});
 		}
 	}
@@ -26,6 +26,7 @@ export class Projects extends React.Component {
 					projectName={this.state.projects[name]["displayName"]}
 					banner={this.state.projects[name]["banner"]}
 					forked={this.state.projects[name]["forked"]}
+					private={this.state.projects[name]["private"]}
 					selectProject={this.selectProject}
 					key={"projectCardKey-"+name}
 				/>
@@ -42,6 +43,9 @@ class ProjectCard extends React.Component {
 		if (this.props.forked == "true") {
 			tag = [ <a className="project-Forked-Tag" key={"projectCardForkedKey-"+this.props.projectName}>Forked</a> ];
 		}
+		if (this.props.private == "true") {
+			tag = [ <a className="project-Private-Tag" key={"projectCardPrivateKey-"+this.props.projectName}>Private</a> ];
+		}
 		return (
 			<div className="project-Card">
 				<Tilt options={{ max : 20, scale: 1, reverse: true }} >
@@ -49,13 +53,30 @@ class ProjectCard extends React.Component {
 						<img src={this.props.banner} className="project-Banner" />
 						{tag}
 				</Tilt>
-				<a className="project-Name">{this.props.projectName}</a>
+				<p className="project-Name">{this.props.projectName}</p>
 			</div>
 		);
 	}
 }
 
 class ProjectDetailsCard extends React.Component {
+	constructor (props){
+		super(props);
+		this.state = { enlargeImage: true };
+		this.toggleImage = this.toggleImage.bind(this);
+	}
+	toggleImage() {
+		if (this.state.enlargeImage) {
+			this.setState({ enlargeImage: false});
+			document.getElementById("project-Details-Banner").style["height"] = "calc(91.5vh - 120px)";
+			document.getElementById("project-Details-Banner").style["width"] = "auto";
+		} else {
+			this.setState({ enlargeImage: true});
+			document.getElementById("project-Details-Banner").style["height"] = "256px";
+			document.getElementById("project-Details-Banner").style["width"] = "auto";
+		}
+	}
+
 	render() {
 		if(this.props.projectName != "") {
 			var projectInfo = this.props.projectInfo[this.props.projectName];
@@ -64,20 +85,29 @@ class ProjectDetailsCard extends React.Component {
 		}
 		return (
 			<div className="project-DetailsCard" id="project-DetailsCard" >
-				<img src="./assets/icons/left-chevron.png" className="project-Left-Arrow"/>
+				{/*<img src="./assets/icons/left-chevron.png" className="project-Left-Arrow"/>*/}
 				<img src={projectInfo["banner"]} className="project-Details-Banner" />
-				<img src="./assets/icons/right-chevron.png" className="project-Right-Arrow"/>
-				<a className="project-Details-Name">{projectInfo["displayName"]}</a>
+				{/*<img src="./assets/icons/right-chevron.png" className="project-Right-Arrow"/>*/}
+				<p className="project-Details-Name">{projectInfo["displayName"]}</p>
 				<div className="project-Details-InfoPanel">
-					<p className="project-Details-InfoPanel-Header">Latest Release: <a className="highlight">{projectInfo["latestRelease"]}</a></p>
-					<p className="project-Details-InfoPanel-Header">Dev Team Size: <a className="highlight">{projectInfo["devTeamSize"]}</a></p>
+					<h1 className="project-Details-InfoPanel-Header">Latest Release: <a className="highlight">{projectInfo["latestRelease"]}</a></h1>
+					<h1 className="project-Details-InfoPanel-Header">Dev Team Size: <a className="highlight">{projectInfo["devTeamSize"]}</a></h1>
 					<h1 className="project-Details-InfoPanel-Header">Languages</h1>
 					{(projectInfo["languages"]).map((language, index) => (
-						<a className="project-Details-InfoPanel-ListItem">&gt; {language}</a>
+						<li className="project-Details-InfoPanel-ListItem">&gt; {language}</li>
 					))}
-					<h1 className="project-Details-InfoPanel-Header">Frameworks</h1>
+
+					{(() => {
+						// Renders Frameworks header if any frameworks where used
+						if (projectInfo["frameworks"].length >= 1) {
+							return <h1 className="project-Details-InfoPanel-Header">Frameworks</h1>
+						} else {
+							return <div />
+						}
+					})()}
+
 					{(projectInfo["frameworks"]).map((framework, index) => (
-						<a className="project-Details-InfoPanel-ListItem">&gt; {framework}</a>
+						<li className="project-Details-InfoPanel-ListItem">&gt; {framework}</li>
 					))}
 				</div>
 				<div className="project-DescriptionWrapper" >

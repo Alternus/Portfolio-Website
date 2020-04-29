@@ -3,28 +3,24 @@ export class SkillsCard extends React.Component {
 		return(
 			<div className="skills-Card" id={this.props.id}>
 				<h1 className="skills-List-Header">Programming Languages</h1>
-				<a className="skills-List-Item">&gt; Python3</a>
-				<a className="skills-List-Item">&gt; C++</a>
-				<a className="skills-List-Item">&gt; C#</a>
-				<a className="skills-List-Item">&gt; Java</a>
-				<a className="skills-List-Item">&gt; HTML, CSS, Javascript, PHP, mySQL</a>
-				<a className="skills-List-Sub-Item">&gt; ReactJS</a>
-				<a className="skills-List-Sub-Item">&gt; Electron</a>
-				<a className="skills-List-Sub-Item">&gt; Proton Native</a>
-				<a className="skills-List-Sub-Item">&gt; React Native</a>
-
+				<li className="skills-List-Item">&gt; Python3</li>
+				<li className="skills-List-Item">&gt; C++</li>
+				<li className="skills-List-Item">&gt; C#</li>
+				<li className="skills-List-Item">&gt; HTML, CSS, Javascript, PHP, NodeJS,  PostgreSQL</li>
+				<li className="skills-List-Sub-Item">&gt; ReactJS</li>
+				<li className="skills-List-Sub-Item">&gt; Electron</li>
 				<h1 className="skills-List-Header">Developer Tools</h1>
-				<a className="skills-List-Item">&gt; Atom</a>
-				<a className="skills-List-Item">&gt; Visual Studio</a>
-				<a className="skills-List-Item">&gt; Terminal</a>
-				<a className="skills-List-Item">&gt; Git & Github</a>
-				<a className="skills-List-Item">&gt; npm</a>
+				<li className="skills-List-Item">&gt; Atom</li>
+				<li className="skills-List-Item">&gt; Visual Studio</li>
+				<li className="skills-List-Item">&gt; Terminal</li>
+				<li className="skills-List-Item">&gt; Git & Github</li>
+				<li className="skills-List-Item">&gt; npm</li>
 				<h1 className="skills-List-Header">Experienced Systems</h1>
 
 				<div className="skills-Systems-Wrapper">
 					<SystemOS os="Windows" />
 					<SystemOS os="Linux" />
-					<SystemOS os="Andriod" />
+					
 				</div>
 			</div>
 		);
@@ -36,7 +32,7 @@ class SystemOS extends React.Component {
 		return(
 			<div className="skills-OS-Wrapper">
 				<img className="skills-OS-Icon" src={"./assets/icons/"+this.props.os+".png"} />
-				<a>{this.props.os}</a>
+				<p>{this.props.os}</p>
 			</div>
 		);
 	}

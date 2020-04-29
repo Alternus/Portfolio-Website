@@ -6,6 +6,7 @@
 	--font: #fff;
 	--font-sub:#aaa;
 	--highlight:#00e676;
+	--highlight-2: #f01031;
 	--highlight-background: #1d2024;
 }
 
@@ -42,7 +43,9 @@ body{
 ::-webkit-scrollbar-thumb {
 	background-color: var(--highlight);
 }
-
+input {
+  filter: none;
+}
 .page-Wrapper {
 	height: calc(99.5vh - 50px);
 	width: 100vw;

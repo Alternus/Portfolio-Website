@@ -57,6 +57,21 @@
 	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
 }
 
+.project-Private-Tag {
+	background-color: var(--highlight-2);
+	text-align: right;
+	padding-right: 10px;
+	height: 25px;
+	width: 90px;
+	position: absolute;
+	font-size: 1.2em;
+	top: 10px;
+	left: 290px;
+	z-index: 1;
+	user-select: none;
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+}
+
 @media only screen and (max-width: 620px) {
 	.project-pageWrapper {
 		justify-content: center;
@@ -93,13 +108,16 @@
 }
 
 .project-Details-Banner {
-	width: 455px;
+	position: absolute;
+	width: auto;
 	height: 256px;
 	transition: filter 0.5s;
 	border-radius: 4px;
 	margin-top: 20px;
 	margin-left: 68px;
+	z-index: 5;
 	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+	transition: height 0.5s, width 0.5s;
 }
 
 .project-Left-Arrow {
@@ -171,7 +189,7 @@
 	line-height: 64px;
 	padding-left: 12px;
 	cursor: pointer;
-	right: 20px;
+	right: 68px;
 	top: 40%;
 	background-color: var(--menu-sub);
 	box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.5);
@@ -185,7 +203,7 @@
 	line-height: 64px;
 	padding-left: 12px;
 	cursor: pointer;
-	right: 20px;
+	right: 68px;
 	top: calc(40% + 84px);
 	background-color: var(--menu-sub);
 	box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.5);
@@ -249,8 +267,9 @@
 .project-DescriptionWrapper {
 	position: absolute;
 	left: 571px;
-	width: calc(95% - 571px - 290px);
-
+	top: 324px;
+	width: calc(95% - 671px - 380px);
+	white-space: pre-line;
 }
 
 

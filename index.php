@@ -1,35 +1,3 @@
-<?php
-
-	echo("<script>console.log('PHP: Hello World');</script>");
-	$db = parse_url(getenv("DATABASE_URL"));
-
-
-	$pdo = new PDO("pgsql:" . sprintf(
-		"host=%s;port=%s;user=%s;password=%s;dbname=%s",
-		$db["host"],
-		$db["port"],
-		$db["user"],
-		$db["pass"],
-		ltrim($db["path"], "/")
-	));
-
-
-
-	if (!$pdo) {
-		echo("<script>console.log('PHP: Database connection failed.');</script>");
-	}
-	else {
-		echo("<script>console.log('PHP: Database connection success.');</script>");
-
-		$sql = "SELECT name FROM message";
-		foreach ($pdo->query($sql) as $row)
-		{
-			echo("<script>console.log('PHP: " . $row['name'] ."');</script>");
-		}
-	}
-
-?>
-
 <!doctype html>
 <html lang="en">
 	<head>
@@ -42,13 +10,14 @@
 		<link rel="stylesheet" type="text/css" href="./css/contact.css">
 		<link rel="stylesheet" type="text/css" href="./css/skillsCard.css">
 		<link rel="stylesheet" type="text/css" href="./css/educationAwardsCard.css">
+		<link rel="stylesheet" type="text/css" href="./css/admin.css">
 	</head>
 	<body>
 		<div id="main">
 		</div>
 
-		<script src="./reactJS/react.js"></script>
-		<script src="./reactJS/react-dom.js"></script>
+		<script src="./reactJS/react.production.min.js"></script>
+		<script src="./reactJS/react-dom.production.min.js"></script>
 		<script src="./dist/app/bundle.js"></script>
 	</body>
 </html>

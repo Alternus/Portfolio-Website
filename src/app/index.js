@@ -1,26 +1,21 @@
-import { Navbar } from './components/navbar.js';
-import { Projects } from './components/projects.js';
-import { SkillsCard } from './components/skillsCard.js';
-import { ContactCard } from './components/contact.js';
-import { EducationAwardsCard } from './components/educationAwardsCard.js';
+import { Home } from './pages/home.js';
+import { Admin } from './pages/admin.js';
+import { BrowserRouter ,Switch, Route } from 'react-router-dom';
 
 class WebPage extends React.Component {
 	render () {
 		return (
-			<div>
-				<Navbar />
-				<div className="page-Wrapper" id="page-Wrapper" >
-					<Projects id="projects" />
-					<SkillsCard id="skills" />
-					<EducationAwardsCard id="education-awards" />
-					<ContactCard id="contact" />
-				</div>
-			</div>
+			<BrowserRouter>
+				<Switch>
+					<Route exact path='/' component={Home}></Route>
+					<Route exact path='/admin' component={Admin}></Route>
+				</Switch>
+			</BrowserRouter>
 		);
 	}
 }
 
 ReactDOM.render(
-	<WebPage/>
-	, document.getElementById('main')
+	<WebPage/>,
+	document.getElementById('main')
 );
