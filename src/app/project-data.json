@@ -20,7 +20,7 @@
 		"forked": "true",
 		"private": "false",
 		"latestRelease": "v0.0.0",
-		"devTeamSize": 1,
+		"devTeamSize": 2,
 		"languages": ["Javascript"],
 		"frameworks": [],
 		"images": ["/assets/projectImages/1.png"],
