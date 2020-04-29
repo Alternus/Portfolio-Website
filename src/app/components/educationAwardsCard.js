@@ -10,12 +10,12 @@ export class EducationAwardsCard extends React.Component {
 				<li className="skills-List-Item" >&gt; Ancient History - Major</li>
 				<li className="skills-List-Item" >&gt; English Literature - Minor</li>
 				<h1 className="skills-List-Header" >Awards & Competitions</h1>
-				<li className="skills-List-Item" >&gt; Lockheed Martin Code Quest 2019</li>
+				<li className="skills-List-Item" >&gt; Lockheed Martin Code Quest 2019 | Team Size - 3</li>
 				<li className="skills-List-Sub-Item" >&gt; 3rd Place</li>
-				<li className="skills-List-Item" >&gt; Lockheed Martin Cyber Quest 2019</li>
+				<li className="skills-List-Item" >&gt; Lockheed Martin Cyber Quest 2019 | Team Size - 3</li>
 				<li className="skills-List-Sub-Item" >&gt; 1st Place Nationally</li>
 				<li className="skills-List-Sub-Item" >&gt; 6th Place Internationally</li>
-				<li className="skills-List-Item" >&gt; UNSW Code ProgComp 2019</li>
+				<li className="skills-List-Item" >&gt; UNSW Code ProgComp 2019 | Team Size - 2</li>
 				<li className="skills-List-Sub-Item" >&gt; Credit</li>
 			</div>
 		);

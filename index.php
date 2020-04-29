@@ -6,7 +6,7 @@
 		<title>Mitchell Wills | Portfolio</title>
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
 		<link rel="stylesheet" type="text/css" href="./css/navbar.css">
-		<link rel="stylesheet" type="text/css" href="./css/portfolio.css">
+		<link rel="stylesheet" type="text/css" href="./css/projects.css">
 		<link rel="stylesheet" type="text/css" href="./css/contact.css">
 		<link rel="stylesheet" type="text/css" href="./css/skillsCard.css">
 		<link rel="stylesheet" type="text/css" href="./css/educationAwardsCard.css">

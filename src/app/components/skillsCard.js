@@ -18,9 +18,9 @@ export class SkillsCard extends React.Component {
 				<h1 className="skills-List-Header">Experienced Systems</h1>
 
 				<div className="skills-Systems-Wrapper">
+				<SystemOS os="Linux" />
 					<SystemOS os="Windows" />
-					<SystemOS os="Linux" />
-					
+
 				</div>
 			</div>
 		);

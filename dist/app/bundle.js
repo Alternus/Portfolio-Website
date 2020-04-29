@@ -29331,7 +29331,7 @@
 
 	"use strict";
 	
-	module.exports = { "mandelbrotSet": { "displayName": "Mandelbrot Set", "banner": "./assets/projectBanners/mandelbrot-set.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Python3"], "frameworks": ["Pygame"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com/Alternus/Pygame-Mandelbrot-Set", "downloadLink": "https://github.com/Alternus/Pygame-Mandelbrot-Set/archive/master.zip", "projectDescriptionHeader": "A visualisation of the Mandelbrot Set written in Python3 with Pygame", "projectDescription": "This project is the result of my year 12 Complex Numbers assignment for Specialist Mathematics, It uses a combination of simultantious multiprocessing and Just-In-Time compilation from the Numba library to optimise the rendering of the set. These optimization techniques allow for the program to render on a i5 7500 (4Core 4Thread CPU from 2017) a precision of 20,000 within 5.5 seconds for a 850x850 resolution image." }, "coinspotAPINodeModule": { "displayName": "Coinspot API Node Module", "banner": "./assets/projectBanners/coinspot-api-node-module.png", "forked": "true", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript"], "frameworks": [], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com/Alternus/npm-coinspot-api", "downloadLink": "https://github.com/Alternus/npm-coinspot-api/archive/master.zip", "projectDescriptionHeader": "An unofficial fork of the Coinspot Node API featuring support for the latest API endpoints", "projectDescription": "Forked from the original Coinspot Node API which hasn't been updated in over 6 years, this project adds support for the read-only API endpoints and new price fetch functions." }, "firefoxDarkThemePlugin": { "displayName": "Firefox Dark Theme Plugin", "banner": "./assets/projectBanners/firefox-dark-theme-plugin.png", "forked": "false", "private": "true", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["CSS", "Javascript"], "frameworks": [], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com/Alternus/", "downloadLink": "https://github.com/Alternus/", "projectDescriptionHeader": "This Firfox extension aims to apply a consistant dark theme across web", "projectDescription": "Using CSS and javascript to overwrite a websites styling this Extension for firefox makes websites styles consistant with one another and superior with dark theme. With the Intial release this extension aims to support:\n\n Google, Google Classroom, Google Docs, Googe slides, Google Drive, Duckduckgo, Github, Mathspace and Youtube." }, "prometheus": { "displayName": "Prometheus", "banner": "./assets/projectBanners/prometheus.png", "forked": "false", "private": "true", "latestRelease": "v0.1.0 - Alpha", "devTeamSize": 2, "languages": ["HTML, CSS, Javascript", "Python3"], "frameworks": ["Electron", "ReactJS", "NodeJS"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com/Alternus/", "downloadLink": "https://github.com/Alternus/", "projectDescriptionHeader": "Cryptocurrency Portfolio Managment App For Desktop and Mobile - Private Project", "projectDescription": "" } };
+	module.exports = { "mandelbrotSet": { "displayName": "Mandelbrot Set", "banner": "./assets/projectBanners/mandelbrot-set.png", "forked": "false", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Python3"], "frameworks": ["Pygame"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com/Alternus/Pygame-Mandelbrot-Set", "downloadLink": "https://github.com/Alternus/Pygame-Mandelbrot-Set/archive/master.zip", "projectDescriptionHeader": "A visualisation of the Mandelbrot Set written in Python3 with Pygame", "projectDescription": "This project is the result of my year 12 Complex Numbers assignment for Specialist Mathematics, It uses a combination of simultantious multiprocessing and Just-In-Time compilation from the Numba library to optimise the rendering of the set. These optimization techniques allow for the program to render on a i5 7500 (4Core 4Thread CPU from 2017) a precision of 20,000 within 5.5 seconds for a 850x850 resolution image." }, "coinspotAPINodeModule": { "displayName": "Coinspot API Node Module", "banner": "./assets/projectBanners/coinspot-api-node-module.png", "forked": "true", "private": "false", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["Javascript"], "frameworks": [], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com/Alternus/npm-coinspot-api", "downloadLink": "https://github.com/Alternus/npm-coinspot-api/archive/master.zip", "projectDescriptionHeader": "An unofficial fork of the Coinspot Node API featuring support for the latest API endpoints", "projectDescription": "Forked from the original Coinspot Node API which hasn't been updated in over 6 years, this project adds support for the read-only API endpoints and new price fetch functions." }, "firefoxDarkThemePlugin": { "displayName": "Firefox Dark Theme Plugin", "banner": "./assets/projectBanners/firefox-dark-theme-plugin.png", "forked": "false", "private": "true", "latestRelease": "v0.0.0", "devTeamSize": 1, "languages": ["CSS", "Javascript"], "frameworks": [], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com/Alternus/", "downloadLink": "https://github.com/Alternus/", "projectDescriptionHeader": "This Firfox extension aims to apply a consistant dark theme across web", "projectDescription": "Using CSS and javascript to overwrite a websites styling this Extension for firefox makes websites styles consistant with one another and superior with dark theme. With the Intial release this extension aims to support:\n\n Google, Google Classroom, Google Docs, Googe slides, Google Drive, Duckduckgo, Github, Mathspace and Youtube." }, "prometheus": { "displayName": "Prometheus", "banner": "./assets/projectBanners/prometheus.png", "forked": "false", "private": "true", "latestRelease": "v0.1.0 - Alpha", "devTeamSize": 2, "languages": ["HTML, CSS, Javascript", "Python3"], "frameworks": ["Electron", "ReactJS", "NodeJS"], "images": ["/assets/projectImages/1.png"], "githubLink": "https://github.com/Alternus/", "downloadLink": "https://github.com/Alternus/", "projectDescriptionHeader": "Cryptocurrency Portfolio Managment App For Desktop and Mobile - Private Project", "projectDescription": "Currently under heavy devolpment this project aims to utilise the API's from multiple leading Cryptocurrency Exchanges to deliver realtime price data for Cryptocurrency portfolio management, while including other important features such as latest Market data, Cryptocurrency news, Google Trends rankings & Twitter data." } };
 
 /***/ }),
 /* 17 */
@@ -29442,8 +29442,8 @@
 					React.createElement(
 						"div",
 						{ className: "skills-Systems-Wrapper" },
-						React.createElement(SystemOS, { os: "Windows" }),
-						React.createElement(SystemOS, { os: "Linux" })
+						React.createElement(SystemOS, { os: "Linux" }),
+						React.createElement(SystemOS, { os: "Windows" })
 					)
 				);
 			}
@@ -32993,7 +32993,7 @@
 					React.createElement(
 						"li",
 						{ className: "skills-List-Item" },
-						"> Lockheed Martin Code Quest 2019"
+						"> Lockheed Martin Code Quest 2019 | Team Size - 3"
 					),
 					React.createElement(
 						"li",
@@ -33003,7 +33003,7 @@
 					React.createElement(
 						"li",
 						{ className: "skills-List-Item" },
-						"> Lockheed Martin Cyber Quest 2019"
+						"> Lockheed Martin Cyber Quest 2019 | Team Size - 3"
 					),
 					React.createElement(
 						"li",
@@ -33018,7 +33018,7 @@
 					React.createElement(
 						"li",
 						{ className: "skills-List-Item" },
-						"> UNSW Code ProgComp 2019"
+						"> UNSW Code ProgComp 2019 | Team Size - 2"
 					),
 					React.createElement(
 						"li",
