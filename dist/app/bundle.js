@@ -33359,7 +33359,7 @@
 								React.createElement(
 									'h3',
 									null,
-									'Delete Button Visability'
+									'Delete Button Visibility'
 								),
 								React.createElement(_toggleSwitch.ToggleSwitch, { callBack: this.toggleDelete, variable: this.state.showDelete })
 							)

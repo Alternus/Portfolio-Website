@@ -131,7 +131,7 @@ export class Admin extends React.Component {
 						<input type="password" className="updateLogin-Input-Field" id="loginForm-OldPassword" placeholder="Old Password" onChange={e => this.setState({ oldPassword: e.target.value })} />
 						<input type="submit" className="updateLogin-Submit-Button" value="Update Password" onClick={e => this.callAPI('update',e)} />
 						<div className="admin-toggleDelete-Wrapper">
-							<h3>Delete Button Visability</h3>
+							<h3>Delete Button Visibility</h3>
 							<ToggleSwitch callBack={this.toggleDelete} variable={this.state.showDelete}/>
 						</div>
 					</div>
