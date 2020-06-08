@@ -177,7 +177,7 @@ class MessageCard extends React.Component {
 		return (
 			<div className="admin-MessageCard">
 				<img src="../../assets/icons/close.png" className="admin-Delete-Button" id="admin-Delete-Button" onClick={e => this.props.deleteMessage(this.props.data['id'],e)} />
-				<p>{this.props.data["id"]} Name: {this.props.data["name"]} | Email: {this.props.data["email"]} | {time.toLocaleString()}</p>
+				<p>Name: {this.props.data["name"]} | Email: {this.props.data["email"]} | {time.toLocaleString()}</p>
 				<p>{this.props.data["message"]} </p>
 			</div>
 		);

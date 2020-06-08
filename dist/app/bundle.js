@@ -33426,8 +33426,7 @@
 					React.createElement(
 						'p',
 						null,
-						this.props.data["id"],
-						' Name: ',
+						'Name: ',
 						this.props.data["name"],
 						' | Email: ',
 						this.props.data["email"],
