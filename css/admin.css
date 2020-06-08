@@ -59,9 +59,8 @@
 #admin-dashboard {
 	position: absolute;
 	top: 5vh;
-	left: calc(25vw - 40px);
 	height: 90vh;
-	width: calc(50vw + 80px);
+	width: calc(100vw);
 	transform: translateY(100vh);
 	transition: transform 0.5s;
 	overflow-x: hidden;
@@ -69,14 +68,62 @@
 
 .admin-MessageCard {
 	background-color: var(--menu);
+	position: relative;
 	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 50px;
 	border-radius: 4px;
 	border-bottom: 20px;
 	white-space: pre-line;
 	width: 50vw;
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+}
+.admin-Delete-Button {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	height: 24px;
+	width: 24px;
+	cursor: pointer;
+	transition: 0.2s;
+	display: none;
+}
+
+.admin-RightDash {
+	position: absolute;
+	right: 50px;
+	top: 50px;
+}
+
+.updateLogin-Input-Field {
+	border: none;
+	background-color: var(--background);
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	width: 250px;
+	color: var(--font);
+	font-size: 1.2em;
+	border-bottom: 5px solid var(--font);
+}
+
+.updateLogin-Submit-Button {
+	font-size: 1.2em;
+	border: none;
+	display: block;
+	color: var(--font);
+	background-color: var(--menu-sub);
+	cursor: pointer;
+	border-radius: 4px;
+	width: 250px;
+	height: 40px;
+	transition: 0.2s;
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0);
+}
+
+.updateLogin-Submit-Button:hover {
+	background-color: var(--highlight);
 	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
 }

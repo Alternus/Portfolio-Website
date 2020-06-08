@@ -53,9 +53,9 @@
 	
 	var _home = __webpack_require__(/*! ./pages/home.js */ 1);
 	
-	var _admin = __webpack_require__(/*! ./pages/admin.js */ 63);
+	var _admin = __webpack_require__(/*! ./pages/admin.js */ 64);
 	
-	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 64);
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 66);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -29492,8 +29492,11 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.ContactCard = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _notifications = __webpack_require__(/*! ../components/notifications.js */ 63);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -29513,7 +29516,8 @@
 				name: '',
 				email: '',
 				message: '',
-				contactError: ''
+				contactError: '',
+				notification: []
 			};
 			_this.submitForm = _this.submitForm.bind(_this);
 			return _this;
@@ -29550,6 +29554,12 @@
 							document.getElementById("contactForm-Email").value = "";
 							document.getElementById("contactForm-Message").value = "";
 							this.setState({ contactError: "" });
+							this.setState({ notification: [React.createElement(_notifications.NotificationBox, {
+									key: this.state.name,
+									timeout: 15,
+									header: 'Your Inquiry Has Been Sent...',
+									message: 'Thank you ' + this.state.name + ' your message has been sent and I will be in contact shortly!'
+								})] });
 							break;
 						default:
 							console.log("PHP SERVER ERROR - 2");
@@ -29569,6 +29579,7 @@
 				return React.createElement(
 					'div',
 					{ className: 'contactCard', id: this.props.id },
+					this.state.notification,
 					React.createElement(
 						'h1',
 						{ className: 'contact-Header' },
@@ -33034,6 +33045,102 @@
 
 /***/ }),
 /* 63 */
+/*!*********************************************!*\
+  !*** ./src/app/components/notifications.js ***!
+  \*********************************************/
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NotificationBox = exports.NotificationBox = function (_React$Component) {
+		_inherits(NotificationBox, _React$Component);
+	
+		function NotificationBox() {
+			_classCallCheck(this, NotificationBox);
+	
+			return _possibleConstructorReturn(this, (NotificationBox.__proto__ || Object.getPrototypeOf(NotificationBox)).apply(this, arguments));
+		}
+	
+		_createClass(NotificationBox, [{
+			key: "closeNotification",
+			value: function closeNotification() {
+				document.getElementById("notification-Box").style["transform"] = "translateX(500px)";
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return React.createElement(
+					"div",
+					{ className: "notification-Box", id: "notification-Box" },
+					React.createElement(NotificationCard, { closeNotification: this.closeNotification, header: this.props.header, message: this.props.message })
+				);
+			}
+		}, {
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				setTimeout(function () {
+					document.getElementById("notification-Box").style["transform"] = "translateX(0)";
+				}, 1);
+				setTimeout(function () {
+					document.getElementById("notification-Box").style["transform"] = "translateX(500px)";
+				}, this.props.timeout * 1000);
+			}
+		}]);
+	
+		return NotificationBox;
+	}(React.Component);
+	
+	var NotificationCard = function (_React$Component2) {
+		_inherits(NotificationCard, _React$Component2);
+	
+		function NotificationCard() {
+			_classCallCheck(this, NotificationCard);
+	
+			return _possibleConstructorReturn(this, (NotificationCard.__proto__ || Object.getPrototypeOf(NotificationCard)).apply(this, arguments));
+		}
+	
+		_createClass(NotificationCard, [{
+			key: "render",
+			value: function render() {
+				var _this3 = this;
+	
+				return React.createElement(
+					"div",
+					{ className: "notification-Card" },
+					React.createElement("img", { src: "../../assets/icons/close.png", className: "notification-Close-Button", onClick: function onClick(e) {
+							return _this3.props.closeNotification(e);
+						} }),
+					React.createElement(
+						"h4",
+						{ className: "notification-Header" },
+						this.props.header
+					),
+					React.createElement(
+						"p",
+						{ className: "notification-Message" },
+						this.props.message
+					)
+				);
+			}
+		}]);
+	
+		return NotificationCard;
+	}(React.Component);
+
+/***/ }),
+/* 64 */
 /*!********************************!*\
   !*** ./src/app/pages/admin.js ***!
   \********************************/
@@ -33044,8 +33151,11 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.Admin = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _toggleSwitch = __webpack_require__(/*! ../ui-elements/toggle-switch.js */ 65);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -33065,9 +33175,16 @@
 				username: '',
 				password: '',
 				loginError: '',
+				oldPassword: '',
+				newPassword1: '',
+				newPassword2: '',
+				messageID: 0,
+				showDelete: false,
 				adminPageData: []
 			};
-			_this.submitForm = _this.submitForm.bind(_this);
+			_this.callAPI = _this.callAPI.bind(_this);
+			_this.deleteMessage = _this.deleteMessage.bind(_this);
+			_this.toggleDelete = _this.toggleDelete.bind(_this);
 			_this.updateAdminPageData = _this.updateAdminPageData.bind(_this);
 			return _this;
 		}
@@ -33084,15 +33201,59 @@
 				document.getElementById("admin-dashboard").style["transform"] = "translateY(0vh)";
 			}
 		}, {
-			key: 'submitForm',
-			value: function submitForm() {
+			key: 'callAPI',
+			value: function callAPI(methodType) {
 				var axios = __webpack_require__(/*! axios */ 19);
 	
 				event.preventDefault();
 	
 				var formData = new FormData();
-				formData.append('username', this.state.username);
-				formData.append('password', this.state.password);
+	
+				switch (methodType) {
+					case 'login':
+						formData.append('type', 'login');
+						formData.append('username', this.state.username);
+						formData.append('password', this.state.password);
+						break;
+					case 'delete':
+						formData.append('type', 'delete');
+						formData.append('id', this.state.messageID);
+						break;
+					case 'update':
+						if (this.state.newPassword1 == this.state.newPassword2) {
+							formData.append('type', 'update');
+							formData.append('newPassword', this.state.newPassword1);
+							formData.append('oldPassword', this.state.oldPassword);
+							document.getElementById('updateForm-New').value = "";
+							document.getElementById('updateForm-ConfirmNew').value = "";
+							document.getElementById('loginForm-OldPassword').value = "";
+						}
+						break;
+				}
+				var _iteratorNormalCompletion = true;
+				var _didIteratorError = false;
+				var _iteratorError = undefined;
+	
+				try {
+					for (var _iterator = formData.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+						var pair = _step.value;
+	
+						console.log(pair[0] + ', ' + pair[1]);
+					}
+				} catch (err) {
+					_didIteratorError = true;
+					_iteratorError = err;
+				} finally {
+					try {
+						if (!_iteratorNormalCompletion && _iterator.return) {
+							_iterator.return();
+						}
+					} finally {
+						if (_didIteratorError) {
+							throw _iteratorError;
+						}
+					}
+				}
 	
 				axios({
 					method: 'post',
@@ -33101,16 +33262,20 @@
 					config: { headers: { 'Content-Type': 'multipart/form-data' } }
 				}).then(function (response) {
 					if (Array.isArray(response["data"])) {
+						console.log(response["data"]);
 						this.updateAdminPageData(response["data"]);
 					} else {
 						switch (response["data"]) {
 							case "Login Error [0]":
+								console.log(response["data"]);
 								this.setState({ loginError: "Username field is incomplete" });
 								break;
 							case "Login Error [1]":
+								console.log(response["data"]);
 								this.setState({ loginError: "Password field is incomplete" });
 								break;
 							case "Login Error [2]":
+								console.log(response["data"]);
 								this.setState({ loginError: "Username or Password is incorrect" });
 								break;
 							default:
@@ -33123,9 +33288,28 @@
 				});
 			}
 		}, {
+			key: 'deleteMessage',
+			value: function deleteMessage(id) {
+				var _this2 = this;
+	
+				this.setState({ messageID: id }, function () {
+					_this2.callAPI('delete');
+				});
+			}
+		}, {
+			key: 'toggleDelete',
+			value: function toggleDelete(variable) {
+				if (variable) {
+					this.setState({ showDelete: false });
+				} else {
+					console.log("WHY");
+					this.setState({ showDelete: true });
+				}
+			}
+		}, {
 			key: 'render',
 			value: function render() {
-				var _this2 = this;
+				var _this3 = this;
 	
 				return React.createElement(
 					'div',
@@ -33139,21 +33323,47 @@
 							this.state.loginError
 						),
 						React.createElement('input', { type: 'text', className: 'login-Input-Field', id: 'loginForm-Username', placeholder: 'Username', onChange: function onChange(e) {
-								return _this2.setState({ username: e.target.value });
+								return _this3.setState({ username: e.target.value });
 							} }),
 						React.createElement('input', { type: 'password', className: 'login-Input-Field', id: 'loginForm-Password', placeholder: 'Password', onChange: function onChange(e) {
-								return _this2.setState({ password: e.target.value });
+								return _this3.setState({ password: e.target.value });
 							} }),
 						React.createElement('input', { type: 'submit', className: 'login-Submit-Button', value: 'Login', onClick: function onClick(e) {
-								return _this2.submitForm(e);
+								return _this3.callAPI('login', e);
 							} })
 					),
 					React.createElement(
 						'div',
 						{ id: 'admin-dashboard' },
 						this.state.adminPageData.map(function (data, index) {
-							return React.createElement(MessageCard, { data: data });
-						})
+							return React.createElement(MessageCard, { data: data, deleteMessage: _this3.deleteMessage, showDelete: _this3.state.showDelete, key: data['id'] });
+						}),
+						React.createElement(
+							'div',
+							{ className: 'admin-RightDash' },
+							React.createElement('input', { type: 'password', className: 'updateLogin-Input-Field', id: 'updateForm-New', placeholder: 'new password', onChange: function onChange(e) {
+									return _this3.setState({ newPassword1: e.target.value });
+								} }),
+							React.createElement('input', { type: 'password', className: 'updateLogin-Input-Field', id: 'updateForm-ConfirmNew', placeholder: 'Confirm new password', onChange: function onChange(e) {
+									return _this3.setState({ newPassword2: e.target.value });
+								} }),
+							React.createElement('input', { type: 'password', className: 'updateLogin-Input-Field', id: 'loginForm-OldPassword', placeholder: 'Old Password', onChange: function onChange(e) {
+									return _this3.setState({ oldPassword: e.target.value });
+								} }),
+							React.createElement('input', { type: 'submit', className: 'updateLogin-Submit-Button', value: 'Update Password', onClick: function onClick(e) {
+									return _this3.callAPI('update', e);
+								} }),
+							React.createElement(
+								'div',
+								{ className: 'admin-toggleDelete-Wrapper' },
+								React.createElement(
+									'h3',
+									null,
+									'Delete Button Visability'
+								),
+								React.createElement(_toggleSwitch.ToggleSwitch, { callBack: this.toggleDelete, variable: this.state.showDelete })
+							)
+						)
 					)
 				);
 			}
@@ -33161,6 +33371,22 @@
 			key: 'componentDidMount',
 			value: function componentDidMount() {
 				document.title = "Admin Portal";
+	
+				// Run an auto check to determine if already logged in
+				var axios = __webpack_require__(/*! axios */ 19);
+				var formData = new FormData();
+				axios({
+					method: 'post',
+					url: '/api/admin.php',
+					data: formData,
+					config: { headers: { 'Content-Type': 'multipart/form-data' } }
+				}).then(function (response) {
+					if (Array.isArray(response["data"]) && this.state.adminPageData.length == 0) {
+						this.updateAdminPageData(response["data"]);
+					}
+				}.bind(this)).catch(function (response) {
+					console.log(response);
+				});
 			}
 		}]);
 	
@@ -33179,15 +33405,29 @@
 		_createClass(MessageCard, [{
 			key: 'render',
 			value: function render() {
+				var _this5 = this;
+	
 				var time = new Date(this.props.data["timestamp"]);
 				time.setHours(time.getHours() - 2);
+				var showDelete = [];
+				var displayValue = 'none';
+				if (this.props.showDelete) {
+					var displayValue = 'block';
+				}
+				for (var i = 0; i < document.getElementsByClassName('admin-Delete-Button').length; i++) {
+					document.getElementsByClassName('admin-Delete-Button')[i].style.display = displayValue;
+				}
 				return React.createElement(
 					'div',
 					{ className: 'admin-MessageCard' },
+					React.createElement('img', { src: '../../assets/icons/close.png', className: 'admin-Delete-Button', id: 'admin-Delete-Button', onClick: function onClick(e) {
+							return _this5.props.deleteMessage(_this5.props.data['id'], e);
+						} }),
 					React.createElement(
 						'p',
 						null,
-						'Name: ',
+						this.props.data["id"],
+						' Name: ',
 						this.props.data["name"],
 						' | Email: ',
 						this.props.data["email"],
@@ -33208,7 +33448,56 @@
 	}(React.Component);
 
 /***/ }),
-/* 64 */
+/* 65 */
+/*!**********************************************!*\
+  !*** ./src/app/ui-elements/toggle-switch.js ***!
+  \**********************************************/
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ToggleSwitch = exports.ToggleSwitch = function (_React$Component) {
+		_inherits(ToggleSwitch, _React$Component);
+	
+		function ToggleSwitch() {
+			_classCallCheck(this, ToggleSwitch);
+	
+			return _possibleConstructorReturn(this, (ToggleSwitch.__proto__ || Object.getPrototypeOf(ToggleSwitch)).apply(this, arguments));
+		}
+	
+		_createClass(ToggleSwitch, [{
+			key: "render",
+			value: function render() {
+				var _this2 = this;
+	
+				return React.createElement(
+					"label",
+					{ className: "switch" },
+					React.createElement("input", { type: "checkbox", onChange: function onChange(e) {
+							return _this2.props.callBack(_this2.props.variable, e);
+						} }),
+					React.createElement("span", { className: "slider" })
+				);
+			}
+		}]);
+	
+		return ToggleSwitch;
+	}(React.Component);
+
+/***/ }),
+/* 66 */
 /*!*************************************!*\
   !*** ./~/react-router-dom/index.js ***!
   \*************************************/
@@ -33219,12 +33508,12 @@
 	if (false) {
 	  module.exports = require("./cjs/react-router-dom.min.js");
 	} else {
-	  module.exports = __webpack_require__(/*! ./cjs/react-router-dom.js */ 65);
+	  module.exports = __webpack_require__(/*! ./cjs/react-router-dom.js */ 67);
 	}
 
 
 /***/ }),
-/* 65 */
+/* 67 */
 /*!****************************************************!*\
   !*** ./~/react-router-dom/cjs/react-router-dom.js ***!
   \****************************************************/
@@ -33234,12 +33523,12 @@
 	
 	function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 	
-	var reactRouter = __webpack_require__(/*! react-router */ 66);
+	var reactRouter = __webpack_require__(/*! react-router */ 68);
 	var React = _interopDefault(__webpack_require__(/*! react */ 5));
-	var history = __webpack_require__(/*! history */ 72);
-	var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ 68));
-	var warning = _interopDefault(__webpack_require__(/*! tiny-warning */ 78));
-	var invariant = _interopDefault(__webpack_require__(/*! tiny-invariant */ 79));
+	var history = __webpack_require__(/*! history */ 74);
+	var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ 70));
+	var warning = _interopDefault(__webpack_require__(/*! tiny-warning */ 80));
+	var invariant = _interopDefault(__webpack_require__(/*! tiny-invariant */ 81));
 	
 	function _extends() {
 	  _extends = Object.assign || function (target) {
@@ -33595,7 +33884,7 @@
 
 
 /***/ }),
-/* 66 */
+/* 68 */
 /*!*********************************!*\
   !*** ./~/react-router/index.js ***!
   \*********************************/
@@ -33606,12 +33895,12 @@
 	if (false) {
 	  module.exports = require("./cjs/react-router.min.js");
 	} else {
-	  module.exports = __webpack_require__(/*! ./cjs/react-router.js */ 67);
+	  module.exports = __webpack_require__(/*! ./cjs/react-router.js */ 69);
 	}
 
 
 /***/ }),
-/* 67 */
+/* 69 */
 /*!********************************************!*\
   !*** ./~/react-router/cjs/react-router.js ***!
   \********************************************/
@@ -33622,14 +33911,14 @@
 	function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 	
 	var React = _interopDefault(__webpack_require__(/*! react */ 5));
-	var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ 68));
-	var history = __webpack_require__(/*! history */ 72);
-	var warning = _interopDefault(__webpack_require__(/*! tiny-warning */ 78));
-	var createContext = _interopDefault(__webpack_require__(/*! mini-create-react-context */ 80));
-	var invariant = _interopDefault(__webpack_require__(/*! tiny-invariant */ 79));
-	var pathToRegexp = _interopDefault(__webpack_require__(/*! path-to-regexp */ 83));
-	var reactIs = __webpack_require__(/*! react-is */ 69);
-	var hoistStatics = _interopDefault(__webpack_require__(/*! hoist-non-react-statics */ 85));
+	var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ 70));
+	var history = __webpack_require__(/*! history */ 74);
+	var warning = _interopDefault(__webpack_require__(/*! tiny-warning */ 80));
+	var createContext = _interopDefault(__webpack_require__(/*! mini-create-react-context */ 82));
+	var invariant = _interopDefault(__webpack_require__(/*! tiny-invariant */ 81));
+	var pathToRegexp = _interopDefault(__webpack_require__(/*! path-to-regexp */ 85));
+	var reactIs = __webpack_require__(/*! react-is */ 71);
+	var hoistStatics = _interopDefault(__webpack_require__(/*! hoist-non-react-statics */ 87));
 	
 	function _extends() {
 	  _extends = Object.assign || function (target) {
@@ -34428,7 +34717,7 @@
 
 
 /***/ }),
-/* 68 */
+/* 70 */
 /*!*******************************!*\
   !*** ./~/prop-types/index.js ***!
   \*******************************/
@@ -34442,12 +34731,12 @@
 	 */
 	
 	if (true) {
-	  var ReactIs = __webpack_require__(/*! react-is */ 69);
+	  var ReactIs = __webpack_require__(/*! react-is */ 71);
 	
 	  // By explicitly using `prop-types` you are opting into new development behavior.
 	  // http://fb.me/prop-types-in-prod
 	  var throwOnDirectAccess = true;
-	  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ 71)(ReactIs.isElement, throwOnDirectAccess);
+	  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ 73)(ReactIs.isElement, throwOnDirectAccess);
 	} else {
 	  // By explicitly using `prop-types` you are opting into new production behavior.
 	  // http://fb.me/prop-types-in-prod
@@ -34456,7 +34745,7 @@
 
 
 /***/ }),
-/* 69 */
+/* 71 */
 /*!*****************************!*\
   !*** ./~/react-is/index.js ***!
   \*****************************/
@@ -34467,12 +34756,12 @@
 	if (false) {
 	  module.exports = require('./cjs/react-is.production.min.js');
 	} else {
-	  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ 70);
+	  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ 72);
 	}
 
 
 /***/ }),
-/* 70 */
+/* 72 */
 /*!************************************************!*\
   !*** ./~/react-is/cjs/react-is.development.js ***!
   \************************************************/
@@ -34662,7 +34951,7 @@
 
 
 /***/ }),
-/* 71 */
+/* 73 */
 /*!*************************************************!*\
   !*** ./~/prop-types/factoryWithTypeCheckers.js ***!
   \*************************************************/
@@ -34677,7 +34966,7 @@
 	
 	'use strict';
 	
-	var ReactIs = __webpack_require__(/*! react-is */ 69);
+	var ReactIs = __webpack_require__(/*! react-is */ 71);
 	var assign = __webpack_require__(/*! object-assign */ 7);
 	
 	var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ 9);
@@ -35262,7 +35551,7 @@
 
 
 /***/ }),
-/* 72 */
+/* 74 */
 /*!****************************!*\
   !*** ./~/history/index.js ***!
   \****************************/
@@ -35273,12 +35562,12 @@
 	if (false) {
 	  module.exports = require('./cjs/history.min.js');
 	} else {
-	  module.exports = __webpack_require__(/*! ./cjs/history.js */ 73);
+	  module.exports = __webpack_require__(/*! ./cjs/history.js */ 75);
 	}
 
 
 /***/ }),
-/* 73 */
+/* 75 */
 /*!**********************************!*\
   !*** ./~/history/cjs/history.js ***!
   \**********************************/
@@ -35290,10 +35579,10 @@
 	
 	function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 	
-	var resolvePathname = _interopDefault(__webpack_require__(/*! resolve-pathname */ 74));
-	var valueEqual = _interopDefault(__webpack_require__(/*! value-equal */ 76));
-	var warning = _interopDefault(__webpack_require__(/*! tiny-warning */ 78));
-	var invariant = _interopDefault(__webpack_require__(/*! tiny-invariant */ 79));
+	var resolvePathname = _interopDefault(__webpack_require__(/*! resolve-pathname */ 76));
+	var valueEqual = _interopDefault(__webpack_require__(/*! value-equal */ 78));
+	var warning = _interopDefault(__webpack_require__(/*! tiny-warning */ 80));
+	var invariant = _interopDefault(__webpack_require__(/*! tiny-invariant */ 81));
 	
 	function _extends() {
 	  _extends = Object.assign || function (target) {
@@ -36235,7 +36524,7 @@
 
 
 /***/ }),
-/* 74 */
+/* 76 */
 /*!*************************************!*\
   !*** ./~/resolve-pathname/index.js ***!
   \*************************************/
@@ -36246,12 +36535,12 @@
 	if (false) {
 	  module.exports = require('./cjs/resolve-pathname.min.js');
 	} else {
-	  module.exports = __webpack_require__(/*! ./cjs/resolve-pathname.js */ 75);
+	  module.exports = __webpack_require__(/*! ./cjs/resolve-pathname.js */ 77);
 	}
 
 
 /***/ }),
-/* 75 */
+/* 77 */
 /*!****************************************************!*\
   !*** ./~/resolve-pathname/cjs/resolve-pathname.js ***!
   \****************************************************/
@@ -36337,7 +36626,7 @@
 
 
 /***/ }),
-/* 76 */
+/* 78 */
 /*!********************************!*\
   !*** ./~/value-equal/index.js ***!
   \********************************/
@@ -36348,12 +36637,12 @@
 	if (false) {
 	  module.exports = require('./cjs/value-equal.min.js');
 	} else {
-	  module.exports = __webpack_require__(/*! ./cjs/value-equal.js */ 77);
+	  module.exports = __webpack_require__(/*! ./cjs/value-equal.js */ 79);
 	}
 
 
 /***/ }),
-/* 77 */
+/* 79 */
 /*!******************************************!*\
   !*** ./~/value-equal/cjs/value-equal.js ***!
   \******************************************/
@@ -36400,7 +36689,7 @@
 
 
 /***/ }),
-/* 78 */
+/* 80 */
 /*!*************************************************!*\
   !*** ./~/tiny-warning/dist/tiny-warning.cjs.js ***!
   \*************************************************/
@@ -36431,7 +36720,7 @@
 
 
 /***/ }),
-/* 79 */
+/* 81 */
 /*!*****************************************************!*\
   !*** ./~/tiny-invariant/dist/tiny-invariant.cjs.js ***!
   \*****************************************************/
@@ -36455,13 +36744,13 @@
 
 
 /***/ }),
-/* 80 */
+/* 82 */
 /*!*******************************************************!*\
   !*** ./~/mini-create-react-context/dist/cjs/index.js ***!
   \*******************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var React=__webpack_require__(/*! react */ 5),React__default=_interopDefault(React),_inheritsLoose=_interopDefault(__webpack_require__(/*! @babel/runtime/helpers/inheritsLoose */ 81)),PropTypes=_interopDefault(__webpack_require__(/*! prop-types */ 68)),gud=_interopDefault(__webpack_require__(/*! gud */ 82)),warning=_interopDefault(__webpack_require__(/*! tiny-warning */ 78));var MAX_SIGNED_31_BIT_INT = 1073741823;
+	'use strict';function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var React=__webpack_require__(/*! react */ 5),React__default=_interopDefault(React),_inheritsLoose=_interopDefault(__webpack_require__(/*! @babel/runtime/helpers/inheritsLoose */ 83)),PropTypes=_interopDefault(__webpack_require__(/*! prop-types */ 70)),gud=_interopDefault(__webpack_require__(/*! gud */ 84)),warning=_interopDefault(__webpack_require__(/*! tiny-warning */ 80));var MAX_SIGNED_31_BIT_INT = 1073741823;
 	
 	function objectIs(x, y) {
 	  if (x === y) {
@@ -36628,7 +36917,7 @@
 	}var index = React__default.createContext || createReactContext;module.exports=index;
 
 /***/ }),
-/* 81 */
+/* 83 */
 /*!***************************************************!*\
   !*** ./~/@babel/runtime/helpers/inheritsLoose.js ***!
   \***************************************************/
@@ -36643,7 +36932,7 @@
 	module.exports = _inheritsLoose;
 
 /***/ }),
-/* 82 */
+/* 84 */
 /*!************************!*\
   !*** ./~/gud/index.js ***!
   \************************/
@@ -36660,13 +36949,13 @@
 
 
 /***/ }),
-/* 83 */
+/* 85 */
 /*!***********************************!*\
   !*** ./~/path-to-regexp/index.js ***!
   \***********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isarray = __webpack_require__(/*! isarray */ 84)
+	var isarray = __webpack_require__(/*! isarray */ 86)
 	
 	/**
 	 * Expose `pathToRegexp`.
@@ -37095,7 +37384,7 @@
 
 
 /***/ }),
-/* 84 */
+/* 86 */
 /*!*********************************************!*\
   !*** ./~/path-to-regexp/~/isarray/index.js ***!
   \*********************************************/
@@ -37107,7 +37396,7 @@
 
 
 /***/ }),
-/* 85 */
+/* 87 */
 /*!***********************************************************************!*\
   !*** ./~/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js ***!
   \***********************************************************************/
@@ -37115,7 +37404,7 @@
 
 	'use strict';
 	
-	var reactIs = __webpack_require__(/*! react-is */ 69);
+	var reactIs = __webpack_require__(/*! react-is */ 71);
 	
 	/**
 	 * Copyright 2015, Yahoo! Inc.

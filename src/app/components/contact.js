@@ -1,3 +1,5 @@
+import { NotificationBox } from '../components/notifications.js';
+
 export class ContactCard extends React.Component {
 	constructor (props){
 		super(props);
@@ -6,6 +8,7 @@ export class ContactCard extends React.Component {
 			email: '',
 			message: '',
 			contactError: '',
+			notification: [],
 		}
 		this.submitForm = this.submitForm.bind(this);
 	}
@@ -39,6 +42,14 @@ export class ContactCard extends React.Component {
 					document.getElementById("contactForm-Email").value = "";
 					document.getElementById("contactForm-Message").value = "";
 					this.setState({contactError: ""});
+					this.setState({notification: [
+						<NotificationBox
+							key={this.state.name}
+							timeout={15}
+							header={'Your Inquiry Has Been Sent...'}
+							message={'Thank you '+this.state.name+' your message has been sent and I will be in contact shortly!'}
+						/>
+					]});
 					break;
 				default:
 				console.log("PHP SERVER ERROR - 2");
@@ -55,6 +66,7 @@ export class ContactCard extends React.Component {
 	render() {
 		return(
 			<div className="contactCard" id={this.props.id}>
+				{this.state.notification}
 				<h1 className="contact-Header" >Contact</h1>
 				<h4 className="contact-Text" > Have a inquiry or want to work together? </h4>
 				<h4 className="contact-Error">{this.state.contactError}</h4>

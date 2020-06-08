@@ -1,0 +1,45 @@
+.notification-Box {
+	position: fixed;
+	top: calc(50px + 0.5vh);
+	right: 12px;
+	transform: translateX(500px);
+	z-index: 5;
+	transition: 0.75s;
+}
+
+.notification-Card {
+	background-color: var(--menu-sub);
+	position: relative;
+	width: 460px;
+	height: 150px;
+	margin-right: 20px;
+	margin-top: 20px;
+	border-radius: 4px;
+	overflow: hidden;
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+}
+
+.notification-Close-Button {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	height: 24px;
+	width: 24px;
+	cursor: pointer;
+}
+
+
+.notification-Header {
+	color: var(--highlight);
+	font-size: 1.2em;
+	padding-top: 0px;
+	margin-left: 12px;
+	width: 460px;
+}
+
+.notification-Message {
+	color: var(--font);
+	font-size: 1em;
+	margin-left: 12px;
+	width: 440px;
+}

@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="./css/projects.css">
 		<link rel="stylesheet" type="text/css" href="./css/contact.css">
 		<link rel="stylesheet" type="text/css" href="./css/skillsCard.css">
+		<link rel="stylesheet" type="text/css" href="./css/notifications.css">
 		<link rel="stylesheet" type="text/css" href="./css/educationAwardsCard.css">
 		<link rel="stylesheet" type="text/css" href="./css/admin.css">
 	</head>
@@ -16,8 +17,8 @@
 		<div id="main">
 		</div>
 
-		<script src="./reactJS/react.production.min.js"></script>
-		<script src="./reactJS/react-dom.production.min.js"></script>
+		<script src="./reactJS/react.js"></script>
+		<script src="./reactJS/react-dom.js"></script>
 		<script src="./dist/app/bundle.js"></script>
 	</body>
 </html>
