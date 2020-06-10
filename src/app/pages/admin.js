@@ -165,7 +165,7 @@ export class Admin extends React.Component {
 class MessageCard extends React.Component {
 	render () {
 		var time = new Date(this.props.data["timestamp"]);
-		time.setHours(time.getHours() - 2);
+		time.setHours(time.getHours() + 10);
 		var showDelete = [];
 		var displayValue = 'none';
 		if (this.props.showDelete) {
@@ -177,7 +177,7 @@ class MessageCard extends React.Component {
 		return (
 			<div className="admin-MessageCard">
 				<img src="../../assets/icons/close.png" className="admin-Delete-Button" id="admin-Delete-Button" onClick={e => this.props.deleteMessage(this.props.data['id'],e)} />
-				<p>Name: {this.props.data["name"]} | Email: {this.props.data["email"]} | {time.toLocaleString()}</p>
+				<p>Name: {this.props.data["name"]} | Email: {this.props.data["email"]} | {time.toLocaleString('en-AU')}</p>
 				<p>{this.props.data["message"]} </p>
 			</div>
 		);
