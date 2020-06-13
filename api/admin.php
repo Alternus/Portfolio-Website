@@ -40,6 +40,10 @@
 				}
 			}
 		}
+		if($_POST['type'] == 'logout') {
+			$_SESSION['user'] = "";
+			$_SESSION['name'] = "";
+		}
 		elseif($_POST['type'] == "delete") {
 			if($_SESSION['user'] == 'admin') {
 				$sql = $pdo->prepare( "DELETE FROM messages WHERE id=:id;");
@@ -83,7 +87,7 @@
 			}
 		}
 
-		if($_SESSION['user'] == 'admin') {
+		if($_SESSION['user'] == 'admin' && $_POST['type'] != "logout") {
 			$sql = "select * from messages;";
 			$messages = $pdo->query($sql);
 			$array = array();

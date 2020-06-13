@@ -33193,12 +33193,17 @@
 			key: 'updateAdminPageData',
 			value: function updateAdminPageData(data) {
 				this.setState({ adminPageData: data });
+				if (data.length > 0) {
 	
-				document.getElementById("loginForm-Username").value = "";
-				document.getElementById("loginForm-Password").value = "";
+					document.getElementById("loginForm-Username").value = "";
+					document.getElementById("loginForm-Password").value = "";
 	
-				document.getElementById("login-Form").style["transform"] = "translateY(-100vh)";
-				document.getElementById("admin-dashboard").style["transform"] = "translateY(0vh)";
+					document.getElementById("login-Form").style["transform"] = "translateY(-100vh)";
+					document.getElementById("admin-dashboard").style["transform"] = "translateY(0vh)";
+				} else {
+					document.getElementById("admin-dashboard").style["transform"] = "translateY(100vh)";
+					document.getElementById("login-Form").style["transform"] = "translate(-7.75vw,-13.35vh)";
+				}
 			}
 		}, {
 			key: 'callAPI',
@@ -33214,6 +33219,11 @@
 						formData.append('type', 'login');
 						formData.append('username', this.state.username);
 						formData.append('password', this.state.password);
+						break;
+					case 'logout':
+						formData.append('type', 'logout');
+						this.updateAdminPageData([]);
+						this.forceUpdate();
 						break;
 					case 'delete':
 						formData.append('type', 'delete');
@@ -33278,6 +33288,8 @@
 								console.log(response["data"]);
 								this.setState({ loginError: "Username or Password is incorrect" });
 								break;
+							case "":
+								break;
 							default:
 								console.log(response["data"]);
 								this.setState({ loginError: "Something went seriously wrong..." });
@@ -33302,7 +33314,6 @@
 				if (variable) {
 					this.setState({ showDelete: false });
 				} else {
-					console.log("WHY");
 					this.setState({ showDelete: true });
 				}
 			}
@@ -33341,6 +33352,9 @@
 						React.createElement(
 							'div',
 							{ className: 'admin-RightDash' },
+							React.createElement('input', { type: 'submit', className: 'logout-Submit-Button', value: 'Logout', onClick: function onClick(e) {
+									return _this3.callAPI('logout', e);
+								} }),
 							React.createElement('input', { type: 'password', className: 'updateLogin-Input-Field', id: 'updateForm-New', placeholder: 'new password', onChange: function onChange(e) {
 									return _this3.setState({ newPassword1: e.target.value });
 								} }),

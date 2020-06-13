@@ -127,3 +127,23 @@
 	background-color: var(--highlight);
 	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
 }
+
+.logout-Submit-Button {
+	font-size: 1.2em;
+	border: none;
+	display: block;
+	color: var(--font);
+	background-color: var(--menu-sub);
+	cursor: pointer;
+	border-radius: 4px;
+	margin-bottom: 100px;
+	width: 250px;
+	height: 40px;
+	transition: 0.2s;
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0);
+}
+
+.logout-Submit-Button:hover {
+	background-color: var(--highlight);
+	box-shadow: -5px 6px 6px 0px rgba(0,0,0,0.5);
+}

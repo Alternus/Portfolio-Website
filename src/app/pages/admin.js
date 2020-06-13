@@ -22,12 +22,18 @@ export class Admin extends React.Component {
 
 	updateAdminPageData(data) {
 		this.setState({adminPageData: data});
+		if (data.length > 0) {
 
-		document.getElementById("loginForm-Username").value = "";
-		document.getElementById("loginForm-Password").value = "";
+			document.getElementById("loginForm-Username").value = "";
+			document.getElementById("loginForm-Password").value = "";
 
-		document.getElementById("login-Form").style["transform"] = "translateY(-100vh)";
-		document.getElementById("admin-dashboard").style["transform"] = "translateY(0vh)";
+			document.getElementById("login-Form").style["transform"] = "translateY(-100vh)";
+			document.getElementById("admin-dashboard").style["transform"] = "translateY(0vh)";
+		}
+		else {
+			document.getElementById("admin-dashboard").style["transform"] = "translateY(100vh)";
+			document.getElementById("login-Form").style["transform"] = "translate(-7.75vw,-13.35vh)";
+		}
 	}
 
 	callAPI(methodType) {
@@ -42,6 +48,11 @@ export class Admin extends React.Component {
 				formData.append('type', 'login');
 				formData.append('username', this.state.username);
 				formData.append('password', this.state.password);
+				break;
+			case 'logout':
+				formData.append('type', 'logout');
+				this.updateAdminPageData([]);
+				this.forceUpdate();
 				break;
 			case 'delete':
 				formData.append('type', 'delete');
@@ -85,6 +96,8 @@ export class Admin extends React.Component {
 						console.log(response["data"]);
 						this.setState({loginError: "Username or Password is incorrect"});
 						break;
+					case "":
+						break
 					default:
 						console.log(response["data"]);
 						this.setState({loginError: "Something went seriously wrong..."});
@@ -107,7 +120,6 @@ export class Admin extends React.Component {
 			this.setState({showDelete: false});
 		}
 		else {
-			console.log("WHY");
 			this.setState({showDelete: true});
 		}
 	}
@@ -126,6 +138,7 @@ export class Admin extends React.Component {
 						<MessageCard data={data} deleteMessage={this.deleteMessage} showDelete={this.state.showDelete} key={data['id']}/>
 					))}
 					<div className="admin-RightDash">
+						<input type="submit" className="logout-Submit-Button" value="Logout" onClick={e => this.callAPI('logout',e)} />
 						<input type="password" className="updateLogin-Input-Field" id="updateForm-New" placeholder="new password" onChange={e => this.setState({ newPassword1: e.target.value })} />
 						<input type="password" className="updateLogin-Input-Field" id="updateForm-ConfirmNew" placeholder="Confirm new password" onChange={e => this.setState({ newPassword2: e.target.value })} />
 						<input type="password" className="updateLogin-Input-Field" id="loginForm-OldPassword" placeholder="Old Password" onChange={e => this.setState({ oldPassword: e.target.value })} />
